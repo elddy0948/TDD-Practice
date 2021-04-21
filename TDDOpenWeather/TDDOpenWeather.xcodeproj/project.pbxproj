@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		B4175F772630735A0073792E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F762630735A0073792E /* AppDelegate.swift */; };
 		B4175F792630735A0073792E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F782630735A0073792E /* SceneDelegate.swift */; };
-		B4175F7B2630735A0073792E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F7A2630735A0073792E /* ViewController.swift */; };
+		B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F7A2630735A0073792E /* SearchCityViewController.swift */; };
 		B4175F7E2630735A0073792E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4175F7C2630735A0073792E /* Main.storyboard */; };
 		B4175F802630735B0073792E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4175F7F2630735B0073792E /* Assets.xcassets */; };
 		B4175F832630735B0073792E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4175F812630735B0073792E /* LaunchScreen.storyboard */; };
 		B4175FA0263076C30073792E /* OpenWeatherButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F9F263076C30073792E /* OpenWeatherButton.swift */; };
 		B4175FA6263077F80073792E /* OpenWeatherTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175FA5263077F80073792E /* OpenWeatherTextField.swift */; };
+		B4175FAC26307A040073792E /* SearchCityViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +32,7 @@
 		B4175F732630735A0073792E /* TDDOpenWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDDOpenWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4175F762630735A0073792E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4175F782630735A0073792E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4175F7A2630735A0073792E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B4175F7A2630735A0073792E /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		B4175F7D2630735A0073792E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4175F7F2630735B0073792E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4175F822630735B0073792E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		B4175F932630736B0073792E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4175F9F263076C30073792E /* OpenWeatherButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherButton.swift; sourceTree = "<group>"; };
 		B4175FA5263077F80073792E /* OpenWeatherTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherTextField.swift; sourceTree = "<group>"; };
+		B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,7 @@
 				B4175F9D263076A40073792E /* CustomViews */,
 				B4175F762630735A0073792E /* AppDelegate.swift */,
 				B4175F782630735A0073792E /* SceneDelegate.swift */,
-				B4175F7A2630735A0073792E /* ViewController.swift */,
+				B4175F7A2630735A0073792E /* SearchCityViewController.swift */,
 				B4175F7C2630735A0073792E /* Main.storyboard */,
 				B4175F7F2630735B0073792E /* Assets.xcassets */,
 				B4175F812630735B0073792E /* LaunchScreen.storyboard */,
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B4175F932630736B0073792E /* Info.plist */,
+				B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */,
 			);
 			path = TDDOpenWeatherTests;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 					};
 					B4175F8E2630736B0073792E = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 						TestTargetID = B4175F722630735A0073792E;
 					};
 				};
@@ -211,7 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4175FA0263076C30073792E /* OpenWeatherButton.swift in Sources */,
-				B4175F7B2630735A0073792E /* ViewController.swift in Sources */,
+				B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */,
 				B4175F772630735A0073792E /* AppDelegate.swift in Sources */,
 				B4175FA6263077F80073792E /* OpenWeatherTextField.swift in Sources */,
 				B4175F792630735A0073792E /* SceneDelegate.swift in Sources */,
@@ -222,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4175FAC26307A040073792E /* SearchCityViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = TDDOpenWeatherTests/Info.plist;
@@ -423,6 +429,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.TDDOpenWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDDOpenWeather.app/TDDOpenWeather";
@@ -433,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = TDDOpenWeatherTests/Info.plist;

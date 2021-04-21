@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class SearchCityViewController: UIViewController {
     
     private let logoImageView = UIImageView()
     private let cityTextField = OpenWeatherTextField()
@@ -40,13 +40,17 @@ class ViewController: UIViewController {
     
     private func configureButton() {
         view.addSubview(searchButton)
-        
+        searchButton.addTarget(self, action: #selector(didTappedSearchButton(_:)), for: .touchUpInside)
         NSLayoutConstraint.activate([
             searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             searchButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    @objc private func didTappedSearchButton(_ sender: UIButton) {
+        
     }
 }
 

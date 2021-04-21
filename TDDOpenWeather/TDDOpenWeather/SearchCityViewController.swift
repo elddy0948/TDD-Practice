@@ -2,9 +2,10 @@ import UIKit
 
 class SearchCityViewController: UIViewController {
     
-    private let logoImageView = UIImageView()
-    private let cityTextField = OpenWeatherTextField()
-    private let searchButton = OpenWeatherButton(title: "Get current weather!", color: .systemOrange)
+    let logoImageView = UIImageView()
+    let cityTextField = OpenWeatherTextField()
+    let searchButton = OpenWeatherButton(title: "Get current weather!", color: .systemOrange)
+    var city: String = "enter"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +50,8 @@ class SearchCityViewController: UIViewController {
         ])
     }
     
-    @objc private func didTappedSearchButton(_ sender: UIButton) {
-        
+    @objc func didTappedSearchButton(_ sender: UIButton) {
+        city = cityTextField.text ?? ""
     }
 }
 

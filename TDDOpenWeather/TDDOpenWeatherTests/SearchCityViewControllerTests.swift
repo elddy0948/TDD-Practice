@@ -6,14 +6,24 @@
 //
 
 import XCTest
+@testable import TDDOpenWeather
 
 class SearchCityViewControllerTests: XCTestCase {
-
+    var sut: SearchCityViewController!
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        sut = SearchCityViewController()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        try super.tearDownWithError()
+    }
+    
+    func testController_whenSearchButtonTapped_isTextFieldStringCome() {
+        //when
+        sut.didTappedSearchButton(sut.searchButton)
+        //then
+        XCTAssertEqual(sut.city, sut.cityTextField.text)
     }
 }

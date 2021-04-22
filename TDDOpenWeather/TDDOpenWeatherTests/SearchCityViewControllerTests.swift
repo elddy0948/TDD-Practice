@@ -21,6 +21,7 @@ class SearchCityViewControllerTests: XCTestCase {
     }
     
     func testController_whenSearchButtonTapped_isTextFieldStringCome() {
+        sut.cityTextField.text = "Seoul"
         //when
         sut.didTappedSearchButton(sut.searchButton)
         //then

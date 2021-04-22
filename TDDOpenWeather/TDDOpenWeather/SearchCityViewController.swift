@@ -5,7 +5,7 @@ class SearchCityViewController: UIViewController {
     let logoImageView = UIImageView()
     let cityTextField = OpenWeatherTextField()
     let searchButton = OpenWeatherButton(title: "Get current weather!", color: .systemOrange)
-    var city: String = "enter"
+    var city: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

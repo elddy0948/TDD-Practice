@@ -1,10 +1,3 @@
-//
-//  SearchCityViewControllerTests.swift
-//  TDDOpenWeatherTests
-//
-//  Created by 김호준 on 2021/04/22.
-//
-
 import XCTest
 @testable import TDDOpenWeather
 
@@ -12,7 +5,8 @@ class SearchCityViewControllerTests: XCTestCase {
     var sut: SearchCityViewController!
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = SearchCityViewController()
+        let rootViewController = loadViewController()
+        sut = rootViewController.searchCityViewController
     }
 
     override func tearDownWithError() throws {

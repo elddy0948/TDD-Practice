@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4146508264288A9008DF266 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4146507264288A9008DF266 /* NetworkManager.swift */; };
+		B414650C2642894A008DF266 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414650B2642894A008DF266 /* ForecastViewController.swift */; };
 		B4175F772630735A0073792E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F762630735A0073792E /* AppDelegate.swift */; };
 		B4175F792630735A0073792E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F782630735A0073792E /* SceneDelegate.swift */; };
 		B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F7A2630735A0073792E /* SearchCityViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4146507264288A9008DF266 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B414650B2642894A008DF266 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		B4175F732630735A0073792E /* TDDOpenWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDDOpenWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4175F762630735A0073792E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4175F782630735A0073792E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B414650626428893008DF266 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B4146507264288A9008DF266 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B414650A26428930008DF266 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B4175F7A2630735A0073792E /* SearchCityViewController.swift */,
+				B414650B2642894A008DF266 /* ForecastViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		B4175F6A2630735A0073792E = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +116,12 @@
 		B4175F752630735A0073792E /* TDDOpenWeather */ = {
 			isa = PBXGroup;
 			children = (
+				B414650A26428930008DF266 /* Screens */,
+				B414650626428893008DF266 /* Networking */,
 				B4D2D1F92631EB2300CCE7FA /* Models */,
 				B4175F9D263076A40073792E /* CustomViews */,
 				B4175F762630735A0073792E /* AppDelegate.swift */,
 				B4175F782630735A0073792E /* SceneDelegate.swift */,
-				B4175F7A2630735A0073792E /* SearchCityViewController.swift */,
 				B4175F7F2630735B0073792E /* Assets.xcassets */,
 				B4175F812630735B0073792E /* LaunchScreen.storyboard */,
 				B4175F842630735B0073792E /* Info.plist */,
@@ -243,6 +265,8 @@
 				B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */,
 				B4175F772630735A0073792E /* AppDelegate.swift in Sources */,
 				B4D2D1FB2631EB3500CCE7FA /* HourlyForecast.swift in Sources */,
+				B4146508264288A9008DF266 /* NetworkManager.swift in Sources */,
+				B414650C2642894A008DF266 /* ForecastViewController.swift in Sources */,
 				B4D2D20D2631F00500CCE7FA /* Weather.swift in Sources */,
 				B4D2D2092631EF9300CCE7FA /* Forecast.swift in Sources */,
 				B4175FA6263077F80073792E /* OpenWeatherTextField.swift in Sources */,

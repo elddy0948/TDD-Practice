@@ -52,6 +52,9 @@ class SearchCityViewController: UIViewController {
     
     @objc func didTappedSearchButton(_ sender: UIButton) {
         city = cityTextField.text ?? ""
+        let viewController = ForecastViewController()
+        viewController.city = city
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

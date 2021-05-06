@@ -16,6 +16,9 @@ class ForecastViewController: UIViewController {
     private func configure() {
         title = city
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.backgroundColor = .systemYellow

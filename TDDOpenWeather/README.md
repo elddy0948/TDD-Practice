@@ -12,9 +12,9 @@
 
 
 
-## 고민한 점
+## 🧐 고민한 점
 
-- Unit Test시 ViewController를 가져오는 방법?
+- ✅ Unit Test시 ViewController를 가져오는 방법?
 
   - 기존에 테스트 코드를 작성할 때 작성한 방법 
 
@@ -60,3 +60,4 @@
 
     위와같은 코드로 가져올 수 있었습니다. 
 
+- ❌ NavigationController에 push를 한 ViewController를 가져와서 테스트하는 방법?

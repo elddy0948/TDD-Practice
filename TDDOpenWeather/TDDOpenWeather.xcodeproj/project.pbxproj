@@ -18,6 +18,9 @@
 		B4175FA6263077F80073792E /* OpenWeatherTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175FA5263077F80073792E /* OpenWeatherTextField.swift */; };
 		B4175FAC26307A040073792E /* SearchCityViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */; };
 		B432E4322643CA2F000971EA /* ForecastViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B432E4312643CA2F000971EA /* ForecastViewControllerTests.swift */; };
+		B432E4342643EAEF000971EA /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B432E4332643EAEF000971EA /* ForecastTableViewCell.swift */; };
+		B432E4362643F087000971EA /* ForecastCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B432E4352643F087000971EA /* ForecastCellView.swift */; };
+		B432E4382643F144000971EA /* TempLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B432E4372643F144000971EA /* TempLabel.swift */; };
 		B4D2D1FB2631EB3500CCE7FA /* HourlyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2D1FA2631EB3500CCE7FA /* HourlyForecast.swift */; };
 		B4D2D2012631EB7F00CCE7FA /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2D2002631EB7F00CCE7FA /* Privacy.swift */; };
 		B4D2D2052631EEBB00CCE7FA /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2D2042631EEBB00CCE7FA /* City.swift */; };
@@ -53,6 +56,9 @@
 		B4175FA5263077F80073792E /* OpenWeatherTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherTextField.swift; sourceTree = "<group>"; };
 		B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewControllerTests.swift; sourceTree = "<group>"; };
 		B432E4312643CA2F000971EA /* ForecastViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewControllerTests.swift; sourceTree = "<group>"; };
+		B432E4332643EAEF000971EA /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		B432E4352643F087000971EA /* ForecastCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCellView.swift; sourceTree = "<group>"; };
+		B432E4372643F144000971EA /* TempLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempLabel.swift; sourceTree = "<group>"; };
 		B4D2D1FA2631EB3500CCE7FA /* HourlyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecast.swift; sourceTree = "<group>"; };
 		B4D2D2002631EB7F00CCE7FA /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D2D2042631EEBB00CCE7FA /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -149,6 +155,9 @@
 			children = (
 				B4175F9F263076C30073792E /* OpenWeatherButton.swift */,
 				B4175FA5263077F80073792E /* OpenWeatherTextField.swift */,
+				B432E4332643EAEF000971EA /* ForecastTableViewCell.swift */,
+				B432E4352643F087000971EA /* ForecastCellView.swift */,
+				B432E4372643F144000971EA /* TempLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -265,13 +274,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4175FA0263076C30073792E /* OpenWeatherButton.swift in Sources */,
+				B432E4382643F144000971EA /* TempLabel.swift in Sources */,
 				B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */,
 				B4175F772630735A0073792E /* AppDelegate.swift in Sources */,
 				B4D2D1FB2631EB3500CCE7FA /* HourlyForecast.swift in Sources */,
 				B4146508264288A9008DF266 /* NetworkManager.swift in Sources */,
 				B414650C2642894A008DF266 /* ForecastViewController.swift in Sources */,
+				B432E4342643EAEF000971EA /* ForecastTableViewCell.swift in Sources */,
 				B4D2D20D2631F00500CCE7FA /* Weather.swift in Sources */,
 				B4D2D2092631EF9300CCE7FA /* Forecast.swift in Sources */,
+				B432E4362643F087000971EA /* ForecastCellView.swift in Sources */,
 				B4175FA6263077F80073792E /* OpenWeatherTextField.swift in Sources */,
 				B4D2D2012631EB7F00CCE7FA /* Privacy.swift in Sources */,
 				B4D2D2052631EEBB00CCE7FA /* City.swift in Sources */,

@@ -12,7 +12,6 @@ class ForecastCellView: UIView {
     private let timeDataLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.text = "12:30"
         return label
     }()
     
@@ -46,9 +45,7 @@ class ForecastCellView: UIView {
     
     private func configure() {
         addSubview(cellStackView)
-        backgroundColor = .systemBlue
         translatesAutoresizingMaskIntoConstraints = false
-        cellStackView.backgroundColor = .systemRed
         cellStackView.addArrangedSubview(timeDataLabel)
         cellStackView.addArrangedSubview(weatherIcon)
         cellStackView.addArrangedSubview(tempMaxMinStackView)
@@ -63,5 +60,13 @@ class ForecastCellView: UIView {
             cellStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             cellStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func configureData(with forecast: Forecast) {
+        let date = Date(timeIntervalSince1970: forecast.dt).getLocalDate()
+        timeDataLabel.text = date
+        tempMaxLabel.text = "\(forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius))"
+        tempMinLabel.text = "\(forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius))"
+        tempLabel.text = "\(forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius))"
     }
 }

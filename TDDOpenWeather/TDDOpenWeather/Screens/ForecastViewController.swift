@@ -13,6 +13,7 @@ class ForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        fetchCityForecast()
         configureTableView()
     }
     
@@ -24,23 +25,34 @@ class ForecastViewController: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.backgroundColor = .systemYellow
+        tableView.backgroundColor = .systemBackground
         
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    private func fetchCityForecast() {
+        let networkManager = NetworkManager.shared
+
+        guard let city = city,
+              let forecastList = networkManager.fetchMockData(cityName: city) else {
+            return
+        }
+        
+        forecast = forecastList
     }
 }
 
 extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return forecast.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseIdentifier) as? ForecastTableViewCell else {
             return UITableViewCell()
         }
-        
+        cell.configureData(with: forecast[indexPath.row])
         return cell
     }
 }

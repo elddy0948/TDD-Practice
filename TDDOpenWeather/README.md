@@ -1,14 +1,15 @@
 # TDD OpenWeather
 
 - App 로직을 작성하기 전에 test를 먼저 작성하자!
-
 - Red -> Green -> Refactor!
-
 - 네이밍 신경쓰기!
+- **DateFormatter**, **MeasurementFormatter** 사용
 
-  
 
 
+## 개선해야할 사항
+
+- Locale 을 사용하여 사용자의 지역에 맞는 시간/온도 포맷 제공하기
 
 
 

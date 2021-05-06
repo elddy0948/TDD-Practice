@@ -2,7 +2,7 @@ import Foundation
 
 
 struct Forecast: Codable {
-    let dt: Int
+    let dt: Double
     let main: WeatherMain
     let weather: [Weather]
     let clouds: [String: Int]

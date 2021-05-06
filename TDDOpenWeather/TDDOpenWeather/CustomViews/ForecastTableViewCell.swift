@@ -3,7 +3,7 @@ import UIKit
 class ForecastTableViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: ForecastTableViewCell.self)
     
-    private let forecastView = ForecastCellView()
+    private var forecastView = ForecastCellView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,5 +26,9 @@ class ForecastTableViewCell: UITableViewCell {
             forecastView.trailingAnchor.constraint(equalTo: trailingAnchor),
             forecastView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func configureData(with forecast: Forecast) {
+        forecastView.configureData(with: forecast)
     }
 }

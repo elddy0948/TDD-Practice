@@ -144,11 +144,10 @@
 		B4175F902630736B0073792E /* TDDOpenWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				B432E43E26444FCB000971EA /* TestHelpers */,
+				B432E43D26444FC3000971EA /* ModelTests */,
+				B432E43C26444FB4000971EA /* ControllerTests */,
 				B4175F932630736B0073792E /* Info.plist */,
-				B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */,
-				B4D2D2102631F44500CCE7FA /* ForecastModelTests.swift */,
-				B4E352C6263295AD0052A810 /* ViewControllers.swift */,
-				B432E4312643CA2F000971EA /* ForecastViewControllerTests.swift */,
 			);
 			path = TDDOpenWeatherTests;
 			sourceTree = "<group>";
@@ -171,6 +170,31 @@
 				B432E43A26442CE8000971EA /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B432E43C26444FB4000971EA /* ControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4175FAB26307A040073792E /* SearchCityViewControllerTests.swift */,
+				B432E4312643CA2F000971EA /* ForecastViewControllerTests.swift */,
+			);
+			path = ControllerTests;
+			sourceTree = "<group>";
+		};
+		B432E43D26444FC3000971EA /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4D2D2102631F44500CCE7FA /* ForecastModelTests.swift */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		B432E43E26444FCB000971EA /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				B4E352C6263295AD0052A810 /* ViewControllers.swift */,
+			);
+			path = TestHelpers;
 			sourceTree = "<group>";
 		};
 		B4D2D1F92631EB2300CCE7FA /* Models */ = {

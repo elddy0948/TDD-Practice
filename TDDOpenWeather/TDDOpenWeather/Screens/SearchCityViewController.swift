@@ -10,6 +10,7 @@ class SearchCityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.isHidden = true
         configureLogoImageView()
         configureTextField()
         configureButton()

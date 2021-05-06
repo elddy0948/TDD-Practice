@@ -9,7 +9,21 @@
 
 ## 개선해야할 사항
 
-- Locale 을 사용하여 사용자의 지역에 맞는 시간/온도 포맷 제공하기
+- [ ] Locale 을 사용하여 사용자의 지역에 맞는 시간/온도 포맷 제공하기
+
+
+
+## Tests
+
+```swift
+ForecastModelTests
+	- testModel_whenCreated_MockDataThrowsError()
+ForecastViewControllerTests
+	- testController_whenViewDidLoad_titleIsCityName()
+SearchCityViewControllerTests
+	- testController_whenViewDidLoad_navigationBarIsHidden()
+	- testController_whenSearchButtonTapped_isTextFieldStringCome()
+```
 
 
 

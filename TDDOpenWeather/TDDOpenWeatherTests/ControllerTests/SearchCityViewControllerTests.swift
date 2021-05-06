@@ -3,6 +3,7 @@ import XCTest
 
 class SearchCityViewControllerTests: XCTestCase {
     var sut: SearchCityViewController!
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         let rootViewController = loadViewController()
@@ -12,6 +13,11 @@ class SearchCityViewControllerTests: XCTestCase {
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
+    }
+    
+    func testController_whenViewDidLoad_navigationBarIsHidden() throws {
+        let unwrapGiven = try XCTUnwrap(sut.navigationController?.navigationBar.isHidden)
+        XCTAssertTrue(unwrapGiven)
     }
     
     func testController_whenSearchButtonTapped_isTextFieldStringCome() {

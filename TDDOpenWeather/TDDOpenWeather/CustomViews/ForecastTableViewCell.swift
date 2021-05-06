@@ -3,7 +3,7 @@ import UIKit
 class ForecastTableViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: ForecastTableViewCell.self)
     
-    private var forecastView = ForecastCellView()
+    private var forecastView = ForecastCellView(frame: .zero)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,10 +21,10 @@ class ForecastTableViewCell: UITableViewCell {
     private func configure() {
         contentView.addSubview(forecastView)
         NSLayoutConstraint.activate([
-            forecastView.topAnchor.constraint(equalTo: topAnchor),
-            forecastView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            forecastView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            forecastView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            forecastView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            forecastView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            forecastView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            forecastView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     

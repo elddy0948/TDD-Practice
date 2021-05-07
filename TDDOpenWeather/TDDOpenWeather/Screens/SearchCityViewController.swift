@@ -7,10 +7,14 @@ class SearchCityViewController: UIViewController {
     let searchButton = OpenWeatherButton(title: "Get current weather!", color: .systemOrange)
     var city: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.isHidden = true
         configureLogoImageView()
         configureTextField()
         configureButton()

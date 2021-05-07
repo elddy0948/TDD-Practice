@@ -16,6 +16,7 @@ class SearchCityViewControllerTests: XCTestCase {
     }
     
     func testController_whenViewDidLoad_navigationBarIsHidden() throws {
+        sut.viewWillAppear(true)
         let unwrapGiven = try XCTUnwrap(sut.navigationController?.navigationBar.isHidden)
         XCTAssertTrue(unwrapGiven)
     }

@@ -19,6 +19,7 @@ class ForecastViewController: UIViewController {
     
     private func configure() {
         title = city
+        navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

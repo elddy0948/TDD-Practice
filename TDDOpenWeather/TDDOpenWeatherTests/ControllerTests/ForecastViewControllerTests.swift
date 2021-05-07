@@ -5,12 +5,18 @@ class ForecastViewControllerTests: XCTestCase {
     var sut: ForecastViewController!
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = ForecastViewController()
+        sut = loadViewController().forecastViewController
     }
 
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
+    }
+    
+    func testController_whenViewDidLoad_navigationBarIsNotHidden() throws {
+        sut.viewDidLoad()
+        let barIsHidden = try XCTUnwrap(sut.navigationController?.navigationBar.isHidden)
+        XCTAssertFalse(barIsHidden)
     }
     
     func testController_whenViewDidLoad_titleIsCityName() {

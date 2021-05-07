@@ -12,4 +12,9 @@ extension UINavigationController {
     var searchCityViewController: SearchCityViewController {
         return children.first as! SearchCityViewController
     }
+    
+    var forecastViewController: ForecastViewController {
+        searchCityViewController.didTappedSearchButton(searchCityViewController.searchButton)
+        return children.last as! ForecastViewController
+    }
 }

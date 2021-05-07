@@ -2,25 +2,56 @@ import UIKit
 
 final class NetworkManager {
     static let shared = NetworkManager()
+    
+    private let baseURL = "https://api.openweathermap.org/data/2.5/forecast"
+    private let apiKey = Privacy.shared.getAPIKey()
+    
     private init() { }
     
-    func fetchForecastByCityName() {
+    func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void) {
         
+        guard let url = makeURL(city: city) else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                completion(.failure(.invalid))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+                  (200...299).contains(response.statusCode) else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let forecastList = try JSONDecoder().decode(HourlyForecast.self, from: data).forecastList
+                completion(.success(forecastList))
+            } catch {
+                completion(.failure(.decodeError))
+            }
+        }
+        task.resume()
     }
     
-    func fetchMockData(cityName: String) -> [Forecast]? {
-        var forecastList = [Forecast]()
+    func makeURL(city: String) -> URL? {
+        var urlComponents = URLComponents(string: baseURL)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "q", value: city),
+            URLQueryItem(name: "appid", value: apiKey)
+        ]
         
-        guard let data = NSDataAsset(name: cityName, bundle: .main)?.data else {
+        guard let url = urlComponents?.url else {
             return nil
         }
-        do {
-            let decodedData = try JSONDecoder().decode(HourlyForecast.self, from: data)
-            forecastList = decodedData.forecastList
-        } catch {
-            print(error)
-            return nil
-        }
-        return forecastList
+        
+        return url
     }
 }

@@ -35,12 +35,21 @@ class ForecastViewController: UIViewController {
     private func fetchCityForecast() {
         let networkManager = NetworkManager.shared
 
-        guard let city = city,
-              let forecastList = networkManager.fetchMockData(cityName: city) else {
+        guard let city = city else {
             return
         }
         
-        forecast = forecastList
+        networkManager.fetchForecastByCityName(city) { result in
+            switch result {
+            case .success(let forecastList):
+                self.forecast = forecastList
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

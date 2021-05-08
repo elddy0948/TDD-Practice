@@ -15,10 +15,7 @@ class ForecastCellView: UIView {
         return label
     }()
     
-    private let weatherIcon: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+    private let weatherIcon = WeatherIconImageView(frame: .zero)
     
     private let tempMaxMinStackView: UIStackView = {
         let stackView = UIStackView()
@@ -68,5 +65,6 @@ class ForecastCellView: UIView {
         tempMaxLabel.text = "\(forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius))"
         tempMinLabel.text = "\(forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius))"
         tempLabel.text = "\(forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius))"
+        weatherIcon.fetchImage(imageName: forecast.weather[0].icon)
     }
 }

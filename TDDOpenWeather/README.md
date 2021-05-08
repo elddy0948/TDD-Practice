@@ -4,6 +4,7 @@
 - Red -> Green -> Refactor!
 - 네이밍 신경쓰기!
 - **DateFormatter**, **MeasurementFormatter** 사용
+- **expectation** 을 활용한 Networking Test
 
 
 
@@ -100,3 +101,4 @@ NetworkManagerTests
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
 
 - ✅ 네트워크 Request를 할 때 "**api.openweathermap.org/data/2.5/forecast**" 로 요청을 날리면 'unsupportedURL' 이라는 에러메시지가 나온다.  "**https://api.openweathermap.org/data/2.5/forecast**" https://를 꼭 붙여줘야 한다!
+

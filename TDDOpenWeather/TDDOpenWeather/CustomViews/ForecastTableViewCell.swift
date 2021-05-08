@@ -16,6 +16,7 @@ class ForecastTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        forecastView.clearAllViews()
     }
     
     private func configure() {

@@ -67,4 +67,12 @@ class ForecastCellView: UIView {
         tempLabel.text = "\(forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius))"
         weatherIcon.fetchImage(imageName: forecast.weather[0].icon)
     }
+    
+    func clearAllViews() {
+        timeDataLabel.text = nil
+        tempMaxLabel.text = nil
+        tempMinLabel.text = nil
+        tempLabel.text = nil
+        weatherIcon.image = nil
+    }
 }

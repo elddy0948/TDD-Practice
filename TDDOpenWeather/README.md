@@ -5,6 +5,7 @@
 - 네이밍 신경쓰기!
 - **DateFormatter**, **MeasurementFormatter** 사용
 - **expectation** 을 활용한 Networking Test
+- **NSCache**를 활용하여 UIImage 저장
 
 
 

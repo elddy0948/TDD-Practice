@@ -3,6 +3,7 @@ import UIKit
 class WeatherIconImageView: UIImageView {
     private let imageURL = "https://openweathermap.org/img/wn/"
     private let placeholder = UIImage(systemName: "sun.max.fill")
+    private let cache = NetworkManager.shared.cache
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -14,16 +15,24 @@ class WeatherIconImageView: UIImageView {
     }
     
     private func configure() {
-        layer.cornerRadius = 10
         clipsToBounds = true
         image = placeholder
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     func fetchImage(imageName: String) {
-        guard let url = URL(string: imageURL + "\(imageName)@2x.png") else {
+        let urlString = imageURL + "\(imageName)@2x.png"
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            self.image = image
             return
         }
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self  else { return }
             
@@ -40,6 +49,8 @@ class WeatherIconImageView: UIImageView {
             guard let image = UIImage(data: data) else {
                 return
             }
+            
+            self.cache.setObject(image, forKey: cacheKey)
             
             DispatchQueue.main.async {
                 self.image = image

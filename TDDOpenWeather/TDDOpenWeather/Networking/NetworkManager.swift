@@ -5,6 +5,7 @@ final class NetworkManager {
     
     private let baseURL = "https://api.openweathermap.org/data/2.5/forecast"
     private let apiKey = Privacy.shared.getAPIKey()
+    let cache = NSCache<NSString, UIImage>()
     
     private init() { }
     

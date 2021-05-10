@@ -20,11 +20,18 @@
 ```swift
 ForecastModelTests
 	- testModel_whenCreated_MockDataThrowsError()
+
 ForecastViewControllerTests
+	- testController_whenViewDidLoad_navigationBarIsNotHidden()
 	- testController_whenViewDidLoad_titleIsCityName()
+	- testController_whenViewDidLoad_rightBarbuttonItemIsNotNil()
+	- testController_whenAlreadyInFavorite_buttonIsStarFill()
+	- testController_whenNotInFavorite_buttonIsStar()
+
 SearchCityViewControllerTests
 	- testController_whenViewDidLoad_navigationBarIsHidden()
 	- testController_whenSearchButtonTapped_isTextFieldStringCome()
+
 NetworkManagerTests
 	- testNetworkManager_makeURL_urlIsNotNil()
 	- testNetworkManager_fetchForecastByCityName_forecastArrayIsNotNil()

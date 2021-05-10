@@ -3,6 +3,7 @@ import UIKit
 class ForecastViewController: UIViewController {
     var city: String?
     var forecast: [Forecast] = []
+    var favorites = [String]()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -21,8 +22,13 @@ class ForecastViewController: UIViewController {
         title = city
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        if favorites.isEmpty {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: nil)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
+        }
     }
-    
+        
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds

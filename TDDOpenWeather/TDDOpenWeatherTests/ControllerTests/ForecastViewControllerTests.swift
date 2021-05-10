@@ -3,9 +3,14 @@ import XCTest
 
 class ForecastViewControllerTests: XCTestCase {
     var sut: ForecastViewController!
+    var rightBarButtonItem: UIBarButtonItem!
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = loadViewController().forecastViewController
+        sut.city = "Seoul"
+        sut.viewDidLoad()
+        rightBarButtonItem = sut.navigationItem.rightBarButtonItem
     }
 
     override func tearDownWithError() throws {
@@ -14,17 +19,29 @@ class ForecastViewControllerTests: XCTestCase {
     }
     
     func testController_whenViewDidLoad_navigationBarIsNotHidden() throws {
-        sut.viewDidLoad()
         let barIsHidden = try XCTUnwrap(sut.navigationController?.navigationBar.isHidden)
         XCTAssertFalse(barIsHidden)
     }
     
     func testController_whenViewDidLoad_titleIsCityName() {
-        //given
-        sut.city = "Seoul"
-        //when
-        sut.viewDidLoad()
-        //then
         XCTAssertEqual(sut.title, sut.city)
+    }
+    
+    func testController_whenViewDidLoad_rightBarbuttonItemIsNotNil() {
+        XCTAssertNotNil(rightBarButtonItem)
+    }
+    
+    func testController_whenAlreadyInFavorite_buttonIsStarFill() {
+        sut.favorites.append("Seoul")
+        sut.viewDidLoad()
+        rightBarButtonItem = sut.navigationItem.rightBarButtonItem
+        XCTAssertEqual(rightBarButtonItem.image, UIImage(systemName: "star.fill"))
+    }
+    
+    func testController_whenNotInFavorite_buttonIsStar() {
+        sut.favorites.removeAll()
+        sut.viewDidLoad()
+        rightBarButtonItem = sut.navigationItem.rightBarButtonItem
+        XCTAssertEqual(rightBarButtonItem.image, UIImage(systemName: "star"))
     }
 }

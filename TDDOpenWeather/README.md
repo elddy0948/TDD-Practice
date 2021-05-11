@@ -13,7 +13,7 @@
 
 - [ ] Locale 을 사용하여 사용자의 지역에 맞는 시간/온도 포맷 제공하기
 
-- [ ] 현재 Network Test를 진행할 때 실제 Network 통신을 통해서 테스트를 진행하고있다! -> 이부분의 리팩토링이 필요함. 
+- [x] 현재 Network Test를 진행할 때 실제 Network 통신을 통해서 테스트를 진행하고있다! -> 이부분의 리팩토링이 필요함. 
 
 
 ## Tests
@@ -110,4 +110,36 @@ NetworkManagerTests
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
 
 - ✅ 네트워크 Request를 할 때 "**api.openweathermap.org/data/2.5/forecast**" 로 요청을 날리면 'unsupportedURL' 이라는 에러메시지가 나온다.  "**https://api.openweathermap.org/data/2.5/forecast**" https://를 꼭 붙여줘야 한다!
+
+- ✅ Network Test를 진행할 때 Network상태에 따라 Test의 성공 여부가 갈리는 테스트는 좋지 않은 테스트이다. 그렇기 때문에 MockNetworkmanager를 만들어 Test시 사용할 Class를 따로 만들었다(이 테스트는 URL이 유효한지 검증) 
+
+  ```swift
+  protocol NetworkManagerProtocol {
+      func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void)
+      func makeURL(city: String) -> URL?
+  }
+  ```
+
+  ```swift
+  //MockNetworkManager.swift
+  func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void) {
+          guard let url = makeURL(city: city) else {
+              completion(.failure(.invalidURL))
+              return
+          }
+          let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+          
+          guard let queryCity = components?.queryItems?.first else {
+              completion(.failure(.invalid))
+              return
+          }
+          
+          if queryCity.name == "q" && queryCity.value! == city {
+              completion(.success([]))
+              return
+          }
+      }
+  ```
+
+  
 

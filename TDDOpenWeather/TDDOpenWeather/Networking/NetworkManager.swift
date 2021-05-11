@@ -1,6 +1,11 @@
 import UIKit
 
-final class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void)
+    func makeURL(city: String) -> URL?
+}
+
+final class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     
     private let baseURL = "https://api.openweathermap.org/data/2.5/forecast"

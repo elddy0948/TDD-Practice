@@ -2,13 +2,13 @@ import XCTest
 @testable import TDDOpenWeather
 
 class NetworkManagerTests: XCTestCase {
-    var sut: NetworkManager!
+    var sut: NetworkManagerProtocol!
     var url: URL!
     var forecast: [Forecast]?
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = NetworkManager.shared
+        sut = MockNetworkManager()
         url = sut.makeURL(city: "Seoul")
         forecast = []
     }

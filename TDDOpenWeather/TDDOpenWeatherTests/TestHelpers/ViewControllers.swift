@@ -14,7 +14,9 @@ extension UINavigationController {
     }
     
     var forecastViewController: ForecastViewController {
-        searchCityViewController.didTappedSearchButton(searchCityViewController.searchButton)
+        let forecastViewController = ForecastViewController()
+        forecastViewController.city = "Seoul"
+        self.pushViewController(forecastViewController, animated: true)
         return children.last as! ForecastViewController
     }
 }

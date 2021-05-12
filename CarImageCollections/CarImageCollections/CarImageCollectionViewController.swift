@@ -31,11 +31,10 @@ class CarImageCollectionViewController: UICollectionViewController {
         carImageUrls = serialUrls.compactMap { URL(string: $0) }
     }
     
-    private func downloadWithGlobalQueue(_ indexPath: IndexPath) {
-        DispatchQueue.global(qos: .utility).async { [weak self] in
+    private func downloadWithURLSession(_ indexPath: IndexPath) {
+        URLSession.shared.dataTask(with: carImageUrls[indexPath.item]) { [weak self] data, response, error in
             guard let self = self else { return }
-            let url = self.carImageUrls[indexPath.item]
-            guard let data = try? Data(contentsOf: url),
+            guard let data = data,
                   let image = UIImage(data: data) else {
                 return
             }
@@ -44,7 +43,7 @@ class CarImageCollectionViewController: UICollectionViewController {
                     cell.setImage(with: image)
                 }
             }
-        }
+        }.resume()
     }
     
     func convertURLToImage(url: URL) -> UIImage? {
@@ -67,7 +66,7 @@ extension CarImageCollectionViewController {
             return UICollectionViewCell()
         }
         cell.setImage(with: UIImage(systemName: "car.fill")!)
-        downloadWithGlobalQueue(indexPath)
+        downloadWithURLSession(indexPath)
         return cell
     }
 }

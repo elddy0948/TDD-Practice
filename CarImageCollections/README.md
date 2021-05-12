@@ -58,3 +58,25 @@ CarImageCollectionViewControllerTests
     🧐 QoS가 `.utility` ? -> 물론 이미지를 다운로드 하는 기능이고, 이는 사용자에게 직접적으로 보여지는 작업이므로 .userInteractive 나 .userInitiated 를 선택할 수도 있었지만, 즉각적으로 보여주지 않아도 괜찮고, 속도와 자원에서의 균형을 맞춰도 상관없는 작업이라 더 생각이 들어서 선택하게 되었습니다. 
 
     해당 방법을 사용하니 스크롤시 버벅임은 줄었고, 부드러워졌지만, 다시돌아오면 이미지를 다시 로드해야하고, 다운로드 중에 화면에서 사라지면 다운로드를 취소하거나 하는 방법이 필요한 것으로 보인다! (Operation을 사용하면 가능할지도?!)
+
+  - URLSession 사용 Dispatch Queue를 활용한 위의 방법과 같지만 애플에서 만들어 준 라이브러리이므로 성능적인 면에서 한결 더 나아진다. 
+
+    ```swift
+    private func downloadWithURLSession(_ indexPath: IndexPath) {
+    	URLSession.shared.dataTask(with: carImageUrls[indexPath.item]) { [weak self] data, response, error in
+    		guard let self = self else { return }
+    		guard let data = data,
+    					let image = UIImage(data: data) else {
+    					return
+    		}
+    		DispatchQueue.main.async {
+    			if let cell = self.collectionView.cellForItem(at: indexPath) as? CarImageCollectionViewCell {
+    				cell.setImage(with: image)
+    			}
+    		}
+    	}.resume()
+    }
+    ```
+
+    
+

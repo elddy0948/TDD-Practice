@@ -31,6 +31,22 @@ class CarImageCollectionViewController: UICollectionViewController {
         carImageUrls = serialUrls.compactMap { URL(string: $0) }
     }
     
+    private func downloadWithGlobalQueue(_ indexPath: IndexPath) {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            let url = self.carImageUrls[indexPath.item]
+            guard let data = try? Data(contentsOf: url),
+                  let image = UIImage(data: data) else {
+                return
+            }
+            DispatchQueue.main.async {
+                if let cell = self.collectionView.cellForItem(at: indexPath) as? CarImageCollectionViewCell {
+                    cell.setImage(with: image)
+                }
+            }
+        }
+    }
+    
     func convertURLToImage(url: URL) -> UIImage? {
         if let data = try? Data(contentsOf: url),
            let image = UIImage(data: data) {
@@ -50,10 +66,8 @@ extension CarImageCollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarImageCollectionViewCell.reuseIdentifier, for: indexPath) as? CarImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        guard let image = convertURLToImage(url: carImageUrls[indexPath.item]) else {
-            return UICollectionViewCell()
-        }
-        cell.setImage(with: image)
+        cell.setImage(with: UIImage(systemName: "car.fill")!)
+        downloadWithGlobalQueue(indexPath)
         return cell
     }
 }

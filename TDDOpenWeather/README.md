@@ -1,19 +1,60 @@
 # TDD OpenWeather
 
-- App 로직을 작성하기 전에 test를 먼저 작성하자!
-- Red -> Green -> Refactor!
-- 네이밍 신경쓰기!
 - **DateFormatter**, **MeasurementFormatter** 사용
-- **expectation** 을 활용한 Networking Test
+
+  ```swift
+  extension Date {
+      func getLocalDate() -> String {
+          let dateFormatter = DateFormatter()
+          dateFormatter.timeStyle = .short
+          dateFormatter.dateStyle = .none
+          dateFormatter.timeZone = .current
+          let localDate = dateFormatter.string(from: self)
+          return localDate
+      }
+  }
+  ```
+
+  ```swift
+  extension Double {
+      func convertTemperature(from: UnitTemperature, to: UnitTemperature) -> String {
+          let measurementFormatter = MeasurementFormatter()
+          measurementFormatter.numberFormatter.maximumFractionDigits = 0
+          measurementFormatter.unitOptions = .providedUnit
+          let input = Measurement(value: self, unit: from)
+          let output = input.converted(to: to)
+          return measurementFormatter.string(from: output)
+      }
+  }
+  ```
+
 - **NSCache**를 활용하여 UIImage 저장
 
-
-
-## 개선해야할 사항
-
-- [ ] Locale 을 사용하여 사용자의 지역에 맞는 시간/온도 포맷 제공하기
-
-- [x] 현재 Network Test를 진행할 때 실제 Network 통신을 통해서 테스트를 진행하고있다! -> 이부분의 리팩토링이 필요함. 
+  ```swift
+  //WeatherIconImageView.swift
+  private let cache = NetworkManager.shared.cache
+  
+  func fetchImage(imageName: String) {
+  	let urlString = imageURL + "\(imageName)@2x.png"
+  	let cacheKey = NSString(string: urlString)
+         
+  	if let image = cache.object(forKey: cacheKey) {
+  		self.image = image
+  		return
+  	}
+    //...
+    
+  	let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+  		guard let self = self  else { return }
+  		//...
+  		guard let image = UIImage(data: data) else {
+  			return
+  		}        
+  		self.cache.setObject(image, forKey: cacheKey)
+  		//...
+  	}
+  }
+  ```
 
 
 ## Tests
@@ -38,57 +79,93 @@ NetworkManagerTests
 	- testNetworkManager_fetchForecastByCityName_forecastArrayIsNotNil()
 ```
 
+## ✅ 해결해 봤어요!
 
+- Unit Test시 ViewController를 가져오는 방법?
+  기존에 테스트 코드를 작성할 때 작성한 방법 
+
+  ```swift
+      var sut: SearchCityViewController!
+      override func setUpWithError() throws {
+          try super.setUpWithError()
+          sut = SearchCityViewController()
+      }
+  ```
+
+  setUp() 에서 직접적으로 SearchCityViewController()를 가져와서 사용하였다.하지만 이를 개선하여 
+
+  ```swift
+  import UIKit
+  @testable import TDDOpenWeather
+  
+  import Foundation
+  func loadViewController() -> UINavigationController {
+      let window = UIApplication.shared.windows[0]
+      let rootViewController = window.rootViewController as! UINavigationController
+      
+      return rootViewController
+  }
+  
+  extension UINavigationController {
+      var searchCityViewController: SearchCityViewController {
+          return children.first as! SearchCityViewController
+      }
+  }
+  ```
+
+  loadViewController() 메서드에서 UIApplication에 접근하여 rootViewController를 가져온 다음, UINavigationController에서 searchCityViewController를 가져오는 코드를 작성하여
+
+  ```swift
+      var sut: SearchCityViewController!
+      override func setUpWithError() throws {
+          try super.setUpWithError()
+          let rootViewController = loadViewController()
+          sut = rootViewController.searchCityViewController
+      }
+  ```
+
+  위와같은 코드로 가져올 수 있었습니다. 
+
+- 네트워크 Request를 할 때 "**api.openweathermap.org/data/2.5/forecast**" 로 요청을 날리면 'unsupportedURL' 이라는 에러메시지가 나온다.  "**https://api.openweathermap.org/data/2.5/forecast**" https://를 꼭 붙여줘야 한다!
+
+-  Network Test를 진행할 때 Network상태에 따라 Test의 성공 여부가 갈리는 테스트는 좋지 않은 테스트이다. 그렇기 때문에 MockNetworkmanager를 만들어 Test시 사용할 Class를 따로 만들었다.
+
+  ```swift
+  protocol NetworkManagerProtocol {
+      func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void)
+      func makeURL(city: String) -> URL?
+  }
+  ```
+
+  NetworkManager 의 Test에서 `testNetworkManager_makeURL_urlIsNotNil()` 를 통해서 이미 URL이 잘 만들어지고 있는지를 검증 받기 때문에, fetchForecastByCityName를 테스트 할 때에는 비어있는 city로 검색을 하려하지는 않는지에 대한 테스트만 있으면 괜찮다고 생각했다. 
+
+  ```swift
+  //MockNetworkManager.swift
+  func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void) {
+  	guard city != "" else {
+  		completion(.failure(.invalid))
+  		return
+  	}
+  	completion(.success([]))
+  }
+  ```
+
+  ```swift
+  func testNetworkManager_fetchForecastByCityName_forecastArrayIsNotNil() {
+  	sut.fetchForecastByCityName("Seoul") { result in
+  		switch result {
+  		case .success(_):
+  			XCTAssert(true)
+  		case .failure(_):
+  			XCTFail()
+  		}
+  	}
+  }
+  ```
+
+  
 
 ## 🧐 고민한 점
-
-- ✅ Unit Test시 ViewController를 가져오는 방법?
-
-  - 기존에 테스트 코드를 작성할 때 작성한 방법 
-
-  - ```swift
-        var sut: SearchCityViewController!
-        override func setUpWithError() throws {
-            try super.setUpWithError()
-            sut = SearchCityViewController()
-        }
-    ```
-
-    setUp() 에서 직접적으로 SearchCityViewController()를 가져와서 사용하였다.하지만 이를 개선하여 
-
-    ```swift
-    import UIKit
-    @testable import TDDOpenWeather
-    
-    import Foundation
-    func loadViewController() -> UINavigationController {
-        let window = UIApplication.shared.windows[0]
-        let rootViewController = window.rootViewController as! UINavigationController
-        
-        return rootViewController
-    }
-    
-    extension UINavigationController {
-        var searchCityViewController: SearchCityViewController {
-            return children.first as! SearchCityViewController
-        }
-    }
-    ```
-
-    loadViewController() 메서드에서 UIApplication에 접근하여 rootViewController를 가져온 다음, UINavigationController에서 searchCityViewController를 가져오는 코드를 작성하여
-
-    ```swift
-        var sut: SearchCityViewController!
-        override func setUpWithError() throws {
-            try super.setUpWithError()
-            let rootViewController = loadViewController()
-            sut = rootViewController.searchCityViewController
-        }
-    ```
-
-    위와같은 코드로 가져올 수 있었습니다. 
-
-- ❌ NavigationController에 push를 한 ViewController를 가져와서 테스트하는 방법?
 
 - ⚠️ NavigationController에 SearchCityViewController를 push한 뒤에 ForecastViewController를 push하여 테스트 하기 위해 
 
@@ -109,37 +186,4 @@ NetworkManagerTests
 
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
 
-- ✅ 네트워크 Request를 할 때 "**api.openweathermap.org/data/2.5/forecast**" 로 요청을 날리면 'unsupportedURL' 이라는 에러메시지가 나온다.  "**https://api.openweathermap.org/data/2.5/forecast**" https://를 꼭 붙여줘야 한다!
-
-- ✅ Network Test를 진행할 때 Network상태에 따라 Test의 성공 여부가 갈리는 테스트는 좋지 않은 테스트이다. 그렇기 때문에 MockNetworkmanager를 만들어 Test시 사용할 Class를 따로 만들었다(이 테스트는 URL이 유효한지 검증) 
-
-  ```swift
-  protocol NetworkManagerProtocol {
-      func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void)
-      func makeURL(city: String) -> URL?
-  }
-  ```
-
-  ```swift
-  //MockNetworkManager.swift
-  func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void) {
-          guard let url = makeURL(city: city) else {
-              completion(.failure(.invalidURL))
-              return
-          }
-          let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-          
-          guard let queryCity = components?.queryItems?.first else {
-              completion(.failure(.invalid))
-              return
-          }
-          
-          if queryCity.name == "q" && queryCity.value! == city {
-              completion(.success([]))
-              return
-          }
-      }
-  ```
-
-  
 

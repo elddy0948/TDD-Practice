@@ -6,21 +6,11 @@ class MockNetworkManager: NetworkManagerProtocol {
     private let apiKey = Privacy.shared.getAPIKey()
     
     func fetchForecastByCityName(_ city: String, completion: @escaping (Result<[Forecast], NetworkError>) -> Void) {
-        guard let url = makeURL(city: city) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        
-        guard let queryCity = components?.queryItems?.first else {
+        guard city != "" else {
             completion(.failure(.invalid))
             return
         }
-        
-        if queryCity.name == "q" && queryCity.value! == city {
-            completion(.success([]))
-            return
-        }
+        completion(.success([]))
     }
     
     func makeURL(city: String) -> URL? {

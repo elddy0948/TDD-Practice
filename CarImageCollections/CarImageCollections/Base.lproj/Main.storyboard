@@ -11,7 +11,7 @@
         <!--Car Image Collection View Controller-->
         <scene sceneID="A8q-4v-qt5">
             <objects>
-                <collectionViewController id="VVl-VJ-bQp" customClass="CarImageCollectionViewController" customModule="CarImageCollections" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CarImageCollectionViewController" id="VVl-VJ-bQp" customClass="CarImageCollectionViewController" customModule="CarImageCollections" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dVa-q1-Gs7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xAV-me-ERy">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="xAV-me-ERy" customClass="CarImageCollectionViewCell" customModule="CarImageCollections" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="x9k-Mt-eUE">

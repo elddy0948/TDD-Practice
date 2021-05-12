@@ -14,7 +14,20 @@
 		B49AF3CA264ADC7F004F5BB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B49AF3C8264ADC7F004F5BB6 /* LaunchScreen.storyboard */; };
 		B49AF3D2264ADCDC004F5BB6 /* CarImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3D1264ADCDC004F5BB6 /* CarImageCollectionViewController.swift */; };
 		B49AF3D4264ADD6E004F5BB6 /* CarImages.plist in Resources */ = {isa = PBXBuildFile; fileRef = B49AF3D3264ADD6E004F5BB6 /* CarImages.plist */; };
+		B49AF3E4264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */; };
+		B49AF3E7264AE658004F5BB6 /* CarImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */; };
+		B49AF3E8264AE658004F5BB6 /* CarImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B49AF3DE264ADF41004F5BB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B49AF3B2264ADC7E004F5BB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B49AF3B9264ADC7E004F5BB6;
+			remoteInfo = CarImageCollections;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B49AF3BA264ADC7E004F5BB6 /* CarImageCollections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarImageCollections.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,10 +39,22 @@
 		B49AF3CB264ADC7F004F5BB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B49AF3D1264ADCDC004F5BB6 /* CarImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCollectionViewController.swift; sourceTree = "<group>"; };
 		B49AF3D3264ADD6E004F5BB6 /* CarImages.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CarImages.plist; sourceTree = "<group>"; };
+		B49AF3D9264ADF41004F5BB6 /* CarImageCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarImageCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B49AF3DD264ADF41004F5BB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCollectionViewControllerTests.swift; sourceTree = "<group>"; };
+		B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B49AF3B7264ADC7E004F5BB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B49AF3D6264ADF41004F5BB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				B49AF3BC264ADC7E004F5BB6 /* CarImageCollections */,
+				B49AF3DA264ADF41004F5BB6 /* CarImageCollectionsTests */,
 				B49AF3BB264ADC7E004F5BB6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				B49AF3BA264ADC7E004F5BB6 /* CarImageCollections.app */,
+				B49AF3D9264ADF41004F5BB6 /* CarImageCollectionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,8 +93,19 @@
 				B49AF3CB264ADC7F004F5BB6 /* Info.plist */,
 				B49AF3D1264ADCDC004F5BB6 /* CarImageCollectionViewController.swift */,
 				B49AF3D3264ADD6E004F5BB6 /* CarImages.plist */,
+				B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */,
+				B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */,
 			);
 			path = CarImageCollections;
+			sourceTree = "<group>";
+		};
+		B49AF3DA264ADF41004F5BB6 /* CarImageCollectionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B49AF3DD264ADF41004F5BB6 /* Info.plist */,
+				B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */,
+			);
+			path = CarImageCollectionsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,6 +128,24 @@
 			productReference = B49AF3BA264ADC7E004F5BB6 /* CarImageCollections.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B49AF3D8264ADF41004F5BB6 /* CarImageCollectionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B49AF3E0264ADF41004F5BB6 /* Build configuration list for PBXNativeTarget "CarImageCollectionsTests" */;
+			buildPhases = (
+				B49AF3D5264ADF41004F5BB6 /* Sources */,
+				B49AF3D6264ADF41004F5BB6 /* Frameworks */,
+				B49AF3D7264ADF41004F5BB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B49AF3DF264ADF41004F5BB6 /* PBXTargetDependency */,
+			);
+			name = CarImageCollectionsTests;
+			productName = CarImageCollectionsTests;
+			productReference = B49AF3D9264ADF41004F5BB6 /* CarImageCollectionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +157,11 @@
 				TargetAttributes = {
 					B49AF3B9264ADC7E004F5BB6 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					B49AF3D8264ADF41004F5BB6 = {
+						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
+						TestTargetID = B49AF3B9264ADC7E004F5BB6;
 					};
 				};
 			};
@@ -118,6 +179,7 @@
 			projectRoot = "";
 			targets = (
 				B49AF3B9264ADC7E004F5BB6 /* CarImageCollections */,
+				B49AF3D8264ADF41004F5BB6 /* CarImageCollectionsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -127,10 +189,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B49AF3E8264AE658004F5BB6 /* CarImageCollectionViewCell.xib in Resources */,
 				B49AF3CA264ADC7F004F5BB6 /* LaunchScreen.storyboard in Resources */,
 				B49AF3D4264ADD6E004F5BB6 /* CarImages.plist in Resources */,
 				B49AF3C7264ADC7F004F5BB6 /* Assets.xcassets in Resources */,
 				B49AF3C5264ADC7E004F5BB6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B49AF3D7264ADF41004F5BB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,11 +213,28 @@
 			files = (
 				B49AF3D2264ADCDC004F5BB6 /* CarImageCollectionViewController.swift in Sources */,
 				B49AF3BE264ADC7E004F5BB6 /* AppDelegate.swift in Sources */,
+				B49AF3E7264AE658004F5BB6 /* CarImageCollectionViewCell.swift in Sources */,
 				B49AF3C0264ADC7E004F5BB6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49AF3D5264ADF41004F5BB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B49AF3E4264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B49AF3DF264ADF41004F5BB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B49AF3B9264ADC7E004F5BB6 /* CarImageCollections */;
+			targetProxy = B49AF3DE264ADF41004F5BB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B49AF3C3264ADC7E004F5BB6 /* Main.storyboard */ = {
@@ -323,6 +410,49 @@
 			};
 			name = Release;
 		};
+		B49AF3E1264ADF41004F5BB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SK9D9HK9A2;
+				INFOPLIST_FILE = CarImageCollectionsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.howift.CarImageCollectionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarImageCollections.app/CarImageCollections";
+			};
+			name = Debug;
+		};
+		B49AF3E2264ADF41004F5BB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SK9D9HK9A2;
+				INFOPLIST_FILE = CarImageCollectionsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.howift.CarImageCollectionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarImageCollections.app/CarImageCollections";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -340,6 +470,15 @@
 			buildConfigurations = (
 				B49AF3CF264ADC7F004F5BB6 /* Debug */,
 				B49AF3D0264ADC7F004F5BB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B49AF3E0264ADF41004F5BB6 /* Build configuration list for PBXNativeTarget "CarImageCollectionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B49AF3E1264ADF41004F5BB6 /* Debug */,
+				B49AF3E2264ADF41004F5BB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

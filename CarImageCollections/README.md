@@ -1,6 +1,6 @@
 # CarImageCollections
 
-
+이 프로젝트에서는 CollectionView에 이미지를 다운로드 하면서 Dispatch Queue에 대한 필요성과 Dispatch Queue를 사용하면 어떤 이점이 있는지에 대한 부분에 집중한 프로젝트입니다.
 
 
 
@@ -15,10 +15,6 @@ CarImageCollectionViewControllerTests
 
 
 ## ✅ 해결했어요!
-
-
-
-## 🧐 고민중!
 
 - 현재의 코드는 `viewDidLoad()`에서 이미지 URL을 그대로 받아와서 `carImageUrls`라는 배열에 넣어주는 것에서 끝났습니다. 그러다보니 `collectionView(_:cellForItemAt:)` 메서드에서 이미지를 다운로드 할 때 문제가 생깁니다.
 
@@ -78,5 +74,5 @@ CarImageCollectionViewControllerTests
     }
     ```
 
-    
+## 🧐 고민중!
 

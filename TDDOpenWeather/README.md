@@ -202,3 +202,9 @@ NetworkManagerTests
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
 
 
+
+
+## App
+
+![Simulator Screen Recording - iPhone SE (2nd generation) - 2021-05-13 at 09 07 27](https://user-images.githubusercontent.com/40102795/118059120-b9fc0880-b3ca-11eb-9920-33bc66503ffd.gif)
+

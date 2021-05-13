@@ -113,7 +113,6 @@ NetworkManagerTests
   import UIKit
   @testable import TDDOpenWeather
   
-  import Foundation
   func loadViewController() -> UINavigationController {
       let window = UIApplication.shared.windows[0]
       let rootViewController = window.rootViewController as! UINavigationController

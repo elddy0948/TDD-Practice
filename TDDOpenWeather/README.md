@@ -1,6 +1,10 @@
 # TDD OpenWeather
 
-- **DateFormatter**, **MeasurementFormatter** 사용
+OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검색하면 그 지역의 3시간 단위의 날씨를 가져오는 토이 프로젝트입니다. 
+
+
+
+- **DateFormatter**, **MeasurementFormatter** 사용 
 
   ```swift
   extension Date {
@@ -28,7 +32,18 @@
   }
   ```
 
-- **NSCache**를 활용하여 UIImage 저장
+  ```swift
+  //Cell에 데이터를 보여줄 때
+  tempLabel.text = forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius)
+  timeDataLabel.text = Date(timeIntervalSince1970: forecast.dt).getLocalDate()
+  ```
+
+- **NSCache**를 활용하여 UIImage 저장하여 ImageView에서 이미지를 Fetch할 때 Cache에 이미지가 이미 있다면, cache에서 이미지를 가져오도록 구성해보았습니다. 
+
+  ```swift
+  //NetworkManager.swift
+  let cache = NSCache<NSString, UIImage>()
+  ```
 
   ```swift
   //WeatherIconImageView.swift

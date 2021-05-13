@@ -60,11 +60,10 @@ class ForecastCellView: UIView {
     }
     
     func configureData(with forecast: Forecast) {
-        let date = Date(timeIntervalSince1970: forecast.dt).getLocalDate()
-        timeDataLabel.text = date
-        tempMaxLabel.text = "\(forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius))"
-        tempMinLabel.text = "\(forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius))"
-        tempLabel.text = "\(forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius))"
+        timeDataLabel.text = Date(timeIntervalSince1970: forecast.dt).getLocalDate()
+        tempMaxLabel.text = forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius)
+        tempMinLabel.text = forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius)
+        tempLabel.text = forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius)
         weatherIcon.fetchImage(imageName: forecast.weather[0].icon)
     }
     

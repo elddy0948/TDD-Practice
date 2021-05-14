@@ -1,22 +1,22 @@
 import UIKit
 @testable import TDDOpenWeather
 
-func loadViewController() -> UINavigationController {
+func loadViewController() -> UITabBarController {
     let window = UIApplication.shared.windows[0]
-    let rootViewController = window.rootViewController as! UINavigationController
-    
+    let rootViewController = window.rootViewController as! UITabBarController
     return rootViewController
 }
 
-extension UINavigationController {
+extension UITabBarController {
     var searchCityViewController: SearchCityViewController {
-        return children.first as! SearchCityViewController
+        let searchCityNavigationController = children.first as! UINavigationController
+        return searchCityNavigationController.children.first as! SearchCityViewController
     }
-    
     var forecastViewController: ForecastViewController {
         let forecastViewController = ForecastViewController()
         forecastViewController.city = "Seoul"
-        self.pushViewController(forecastViewController, animated: true)
-        return children.last as! ForecastViewController
+        let searchCityNavigationController = children.first as! UINavigationController
+        searchCityNavigationController.pushViewController(forecastViewController, animated: true)
+        return searchCityNavigationController.children.last as! ForecastViewController
     }
 }

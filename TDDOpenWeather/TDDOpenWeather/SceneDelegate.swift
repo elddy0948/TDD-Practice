@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  TDDOpenWeather
-//
-//  Created by 김호준 on 2021/04/21.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -22,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createTabBarController() -> UITabBarController {
         let tabbarController = UITabBarController()
-        tabbarController.setViewControllers([createSearchNavigationController()], animated: true)
+        tabbarController.setViewControllers([createSearchNavigationController(), createFavoriteCityNavigationController()], animated: true)
         UITabBar.appearance().tintColor = .label
         return tabbarController
     }
@@ -32,6 +25,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         searchViewController.title = "Search"
         searchViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         return UINavigationController(rootViewController: searchViewController)
+    }
+    
+    func createFavoriteCityNavigationController() -> UINavigationController {
+        let favoriteCityViewController = FavoriteCityViewController()
+        favoriteCityViewController.title = "My Favorite"
+        favoriteCityViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        return UINavigationController(rootViewController: favoriteCityViewController)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

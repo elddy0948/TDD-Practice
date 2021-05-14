@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B403491D264EBAF600601C0E /* FavoriteCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B403491C264EBAF600601C0E /* FavoriteCityViewController.swift */; };
 		B4146508264288A9008DF266 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4146507264288A9008DF266 /* NetworkManager.swift */; };
 		B414650C2642894A008DF266 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414650B2642894A008DF266 /* ForecastViewController.swift */; };
 		B4175F772630735A0073792E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4175F762630735A0073792E /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B403491C264EBAF600601C0E /* FavoriteCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCityViewController.swift; sourceTree = "<group>"; };
 		B4146507264288A9008DF266 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B414650B2642894A008DF266 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		B4175F732630735A0073792E /* TDDOpenWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDDOpenWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			children = (
 				B4175F7A2630735A0073792E /* SearchCityViewController.swift */,
 				B414650B2642894A008DF266 /* ForecastViewController.swift */,
+				B403491C264EBAF600601C0E /* FavoriteCityViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B432E442264517FA000971EA /* NetworkError.swift in Sources */,
+				B403491D264EBAF600601C0E /* FavoriteCityViewController.swift in Sources */,
 				B4175FA0263076C30073792E /* OpenWeatherButton.swift in Sources */,
 				B432E4382643F144000971EA /* TempLabel.swift in Sources */,
 				B4175F7B2630735A0073792E /* SearchCityViewController.swift in Sources */,

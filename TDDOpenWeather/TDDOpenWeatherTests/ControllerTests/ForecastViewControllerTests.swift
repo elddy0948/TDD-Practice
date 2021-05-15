@@ -44,4 +44,11 @@ class ForecastViewControllerTests: XCTestCase {
         rightBarButtonItem = sut.navigationItem.rightBarButtonItem
         XCTAssertEqual(rightBarButtonItem.image, UIImage(systemName: "star"))
     }
+    
+    func testController_whenDidTappedFavoriteButton_favoriteButtonIsToggled() {
+        let button = sut.navigationItem.rightBarButtonItem!
+        let currentImage = button.image!
+        sut.didTappedFavoriteButton(button)
+        XCTAssertNotEqual(currentImage, sut.navigationItem.rightBarButtonItem?.image!)
+    }
 }

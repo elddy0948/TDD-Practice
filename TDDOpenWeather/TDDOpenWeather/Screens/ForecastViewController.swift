@@ -23,9 +23,9 @@ class ForecastViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
         if favorites.isEmpty {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: nil)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(didTappedFavoriteButton(_:)))
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(didTappedFavoriteButton(_:)))
         }
     }
         
@@ -55,6 +55,15 @@ class ForecastViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    @objc func didTappedFavoriteButton(_ sender: UIBarButtonItem) {
+        let currentImage = sender.image!
+        if currentImage == UIImage(systemName: "star") {
+            sender.image = UIImage(systemName: "star.fill")!
+        } else {
+            sender.image = UIImage(systemName: "star")!
         }
     }
 }

@@ -84,6 +84,7 @@ ForecastViewControllerTests
 	- testController_whenViewDidLoad_rightBarbuttonItemIsNotNil()
 	- testController_whenAlreadyInFavorite_buttonIsStarFill()
 	- testController_whenNotInFavorite_buttonIsStar()
+	- testController_whenDidTappedFavoriteButton_favoriteButtonIsToggled()
 
 SearchCityViewControllerTests
 	- testController_whenViewDidLoad_navigationBarIsHidden()

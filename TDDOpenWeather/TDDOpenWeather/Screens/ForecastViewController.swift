@@ -3,7 +3,8 @@ import UIKit
 class ForecastViewController: UIViewController {
     var city: String?
     var forecast: [Forecast] = []
-    var favorites = [String]()
+    var coreDataManager: CoreDataManager!
+    var favorites = [FavoriteCity]()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -13,19 +14,28 @@ class ForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCoreData()
         configure()
         fetchCityForecast()
         configureTableView()
+    }
+    
+    private func configureCoreData() {
+        coreDataManager = CoreDataManager.shared
+        guard let favoriteCity = coreDataManager.loadSavedData() else {
+            return
+        }
+        favorites = favoriteCity
     }
     
     private func configure() {
         title = city
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        if favorites.isEmpty {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(didTappedFavoriteButton(_:)))
-        } else {
+        if favorites.contains(where: { $0.name == city }) {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(didTappedFavoriteButton(_:)))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(didTappedFavoriteButton(_:)))
         }
     }
         
@@ -58,12 +68,21 @@ class ForecastViewController: UIViewController {
         }
     }
     
+    func findCityAndDelete() {
+        let filteredFavorites = favorites.filter { $0.name == city }
+        if !filteredFavorites.isEmpty {
+            coreDataManager.delete(object: filteredFavorites[0])
+        }
+    }
+    
     @objc func didTappedFavoriteButton(_ sender: UIBarButtonItem) {
         let currentImage = sender.image!
         if currentImage == UIImage(systemName: "star") {
             sender.image = UIImage(systemName: "star.fill")!
+            coreDataManager.insertCity(city: self.city!)
         } else {
             sender.image = UIImage(systemName: "star")!
+            findCityAndDelete()
         }
     }
 }

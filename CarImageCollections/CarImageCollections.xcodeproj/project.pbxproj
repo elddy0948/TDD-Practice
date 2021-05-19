@@ -70,6 +70,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B44E3D4E26556627002A2A51 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				B49AF3D1264ADCDC004F5BB6 /* CarImageCollectionViewController.swift */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		B44E3D4F26556635002A2A51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */,
+				B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B49AF3B1264ADC7E004F5BB6 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +108,8 @@
 		B49AF3BC264ADC7E004F5BB6 /* CarImageCollections */ = {
 			isa = PBXGroup;
 			children = (
+				B44E3D4F26556635002A2A51 /* Views */,
+				B44E3D4E26556627002A2A51 /* GCD */,
 				B4D6193B2654D88E009AD07F /* Operations */,
 				B49AF3BD264ADC7E004F5BB6 /* AppDelegate.swift */,
 				B49AF3BF264ADC7E004F5BB6 /* SceneDelegate.swift */,
@@ -98,10 +117,7 @@
 				B49AF3C6264ADC7F004F5BB6 /* Assets.xcassets */,
 				B49AF3C8264ADC7F004F5BB6 /* LaunchScreen.storyboard */,
 				B49AF3CB264ADC7F004F5BB6 /* Info.plist */,
-				B49AF3D1264ADCDC004F5BB6 /* CarImageCollectionViewController.swift */,
 				B49AF3D3264ADD6E004F5BB6 /* CarImages.plist */,
-				B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */,
-				B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */,
 			);
 			path = CarImageCollections;
 			sourceTree = "<group>";

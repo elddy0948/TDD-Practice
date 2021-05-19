@@ -2,7 +2,17 @@
 
 이 프로젝트에서는 CollectionView에 이미지를 다운로드 하면서 Dispatch Queue에 대한 필요성과 Dispatch Queue를 사용하면 어떤 이점이 있는지에 대한 부분에 집중한 프로젝트입니다.
 
+또한 Operation을 활용하여 이미지를 다운로드해보는 연습도 해보았습니다.
 
+## 목차
+
+- [구현내용](#used-skill)
+- [해결한점](#think-finish)
+- [고민중](#thinking-now)
+
+
+
+## <a name="used-skill">구현내용</a>
 
 - AsyncOperation의 구현 ready와 executing, finished상태에 대한 관리를 하려고 State라는 enum을 만들었습니다. 
 
@@ -45,9 +55,38 @@
       }
   ```
 
+- Operation Cancel 구현
+
+  CollectionView에서 사용자가 스크롤을 빨리 내려서 다운로드를 취소해야 할 때를 대비하여 `collectionView(_:didEndDisplaying:_:)`에서 cancel메서드를 호출해 주었습니다.
+
+  ```swift
+  override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+  	if let operation = operations[indexPath] {
+  		operation.cancel()
+  	}
+  }
+  ```
+
+  또한 Operation을 구현하는 코드에서 dataTask를 실행 시 isCancelled 상태를 확인하여 return시키는 코드 또한 추가했습니다. 
+
+  ```swift
+  task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+  	//Some Code...
+  	guard !self.isCancelled else { return }
+  	//Some Code...
+  }
+  ```
+
+  **CarImageOperation**에서의 `cancel()` 구현
+
+  ```swift
+  override func cancel() {
+  	super.cancel()
+  	task?.cancel()
+  }
+  ```
+
   
-
-
 
 ## Tests
 
@@ -59,7 +98,7 @@ CarImageCollectionViewControllerTests
 
 
 
-## ✅ 해결했어요!
+## <a name="think-finish">해결한 점</a>
 
 - 현재의 코드는 `viewDidLoad()`에서 이미지 URL을 그대로 받아와서 `carImageUrls`라는 배열에 넣어주는 것에서 끝났습니다. 그러다보니 `collectionView(_:cellForItemAt:)` 메서드에서 이미지를 다운로드 할 때 문제가 생깁니다.
 
@@ -119,8 +158,6 @@ CarImageCollectionViewControllerTests
     }
     ```
 
-## 🧐 고민중!
-
 - 이미지의 다운로드가 첫번째 페이지에서만 동작하고 그 다음 페이지부터는 동작하지 않는 문제가 발생해서 그것에 대해서 알아보는 중입니다! 
 
   ```swift
@@ -128,3 +165,56 @@ CarImageCollectionViewControllerTests
   ```
 
   우선 발견한 문제점은 해당 코드를 실행해서 cell을 가져올 때 nil값을 반환한다는 문제점이 있었습니다. 
+
+  - ImageView의 이미지를 바꾸는 시점에 대해서 고민해보았습니다. ImageView가 Configure될 때 즉, Cell이 만들어질 때 url을 주어서 다운로드할 수 있게 해주었습니다. 
+
+    ```swift
+    //CollectionViewController.swift
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarImageCollectionViewCell.reuseIdentifier, for: indexPath) as? CarImageCollectionViewCell else {
+    	return UICollectionViewCell()
+    }
+    let url = carImageUrls[indexPath.item]
+    cell.downloadImage(url: url)
+    return cell
+    ```
+
+    ```swift
+    //CarImageCollectionViewCell.swift
+    func downloadImage(url: URL) {
+    	URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+    		guard let self = self else { return }
+    		guard let data = data,
+    					let image = UIImage(data: data) else {
+    						return
+              }
+    		DispatchQueue.main.async {
+    			self.carImageView.image = image
+    		}
+    	}.resume()
+    }
+    ```
+
+  - Operation의 경우에는 Operation에서 이미지를 다운로드 받아온 후 image를 설정해주는 로직으로 작성하여서 단순하게 이미지만 바꿔주면 되었습니다. 
+
+    ```swift
+    let downloadOperation = CarImageOperation(url: urls[indexPath.item])
+    downloadOperation.completionBlock = {
+    	DispatchQueue.main.async {
+    		cell.carImageView.image = downloadOperation.image
+    	}
+    }
+    queue.addOperation(downloadOperation)
+    ```
+
+    
+
+## <a name="thinking-now">고민중!</a>
+
+
+
+
+
+## App
+
+![Simulator Screen Recording - iPhone 12 - 2021-05-20 at 01 19 20](https://user-images.githubusercontent.com/40102795/118848145-72650780-b909-11eb-9261-cfce4bf215e4.gif)
+

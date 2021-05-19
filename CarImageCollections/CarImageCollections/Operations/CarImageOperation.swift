@@ -17,7 +17,7 @@ final class CarImageOperation: AsyncOperation {
         task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self else { return }
             defer { self.state = .finished }
-            guard !self.isFinished else { return }
+            guard !self.isCancelled else { return }
             
             if let completion = self.completionHandler {
                 completion(data, response, error)

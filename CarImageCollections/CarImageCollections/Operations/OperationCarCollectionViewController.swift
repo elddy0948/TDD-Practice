@@ -46,18 +46,10 @@ extension OperationCarCollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarImageCollectionViewCell.reuseIdentifier, for: indexPath) as? CarImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-
-        cell.setImage(with: UIImage(systemName: "car.fill")!)
         let downloadOperation = CarImageOperation(url: urls[indexPath.item])
         downloadOperation.completionBlock = {
             DispatchQueue.main.async {
-                var cell = collectionView.cellForItem(at: indexPath) as? CarImageCollectionViewCell
-                if cell == nil {
-                    collectionView.reloadData()
-                    collectionView.layoutIfNeeded()
-                    cell = collectionView.cellForItem(at: indexPath) as? CarImageCollectionViewCell
-                }
-                cell?.setImage(with: downloadOperation.image!)
+                cell.carImageView.image = downloadOperation.image
             }
         }
         queue.addOperation(downloadOperation)

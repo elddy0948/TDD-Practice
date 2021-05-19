@@ -2,10 +2,15 @@
 
 OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검색하면 그 지역의 3시간 단위의 날씨를 가져오는 토이 프로젝트입니다.
 
-[✅ 해결해 봤어요!](#✅ 해결해 봤어요!)
+## 목록
+- [사용한 기술](#used-skill)
+- [Tests](#tests-section)
+- [해결해 봤어요!](#solved-problems)
+- [고민한 점](#think-point)
+ 
 
 
-
+## <a name="used-skill">사용한 기술</a>
 - **DateFormatter**, **MeasurementFormatter** 사용했습니다.
 
   ```swift
@@ -73,8 +78,7 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
   }
   ```
 
-
-## Tests
+## <a name="tests-section">Tests</a>
 
 ```swift
 ForecastModelTests
@@ -96,8 +100,8 @@ NetworkManagerTests
 	- testNetworkManager_makeURL_urlIsNotNil()
 	- testNetworkManager_fetchForecastByCityName_forecastArrayIsNotNil()
 ```
-
-## ✅ 해결해 봤어요!
+## <a name="solved-problems">✅ 해결해 봤어요!</a>
+ 
 
 - Unit Test시 ViewController를 가져오는 방법?
   기존에 테스트 코드를 작성할 때 작성한 방법 
@@ -182,7 +186,7 @@ NetworkManagerTests
 
   
 
-## 🧐 고민한 점
+## <a name="think-point">🧐 고민한 점</a>
 
 - ⚠️ NavigationController에 SearchCityViewController를 push한 뒤에 ForecastViewController를 push하여 테스트 하기 위해 
 

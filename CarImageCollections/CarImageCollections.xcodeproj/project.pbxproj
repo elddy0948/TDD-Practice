@@ -17,6 +17,9 @@
 		B49AF3E4264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */; };
 		B49AF3E7264AE658004F5BB6 /* CarImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */; };
 		B49AF3E8264AE658004F5BB6 /* CarImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */; };
+		B4D6193A2654D663009AD07F /* CarImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D619392654D663009AD07F /* CarImageOperation.swift */; };
+		B4D6193D2654D89E009AD07F /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6193C2654D89E009AD07F /* AsyncOperation.swift */; };
+		B4D6193F2654DB61009AD07F /* OperationCarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6193E2654DB61009AD07F /* OperationCarCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		B49AF3E5264AE658004F5BB6 /* CarImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B49AF3E6264AE658004F5BB6 /* CarImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		B4D619392654D663009AD07F /* CarImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageOperation.swift; sourceTree = "<group>"; };
+		B4D6193C2654D89E009AD07F /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B4D6193E2654DB61009AD07F /* OperationCarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCarCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		B49AF3BC264ADC7E004F5BB6 /* CarImageCollections */ = {
 			isa = PBXGroup;
 			children = (
+				B4D6193B2654D88E009AD07F /* Operations */,
 				B49AF3BD264ADC7E004F5BB6 /* AppDelegate.swift */,
 				B49AF3BF264ADC7E004F5BB6 /* SceneDelegate.swift */,
 				B49AF3C3264ADC7E004F5BB6 /* Main.storyboard */,
@@ -106,6 +113,16 @@
 				B49AF3E3264ADF60004F5BB6 /* CarImageCollectionViewControllerTests.swift */,
 			);
 			path = CarImageCollectionsTests;
+			sourceTree = "<group>";
+		};
+		B4D6193B2654D88E009AD07F /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				B4D6193E2654DB61009AD07F /* OperationCarCollectionViewController.swift */,
+				B4D619392654D663009AD07F /* CarImageOperation.swift */,
+				B4D6193C2654D89E009AD07F /* AsyncOperation.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,9 +229,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B49AF3D2264ADCDC004F5BB6 /* CarImageCollectionViewController.swift in Sources */,
+				B4D6193F2654DB61009AD07F /* OperationCarCollectionViewController.swift in Sources */,
 				B49AF3BE264ADC7E004F5BB6 /* AppDelegate.swift in Sources */,
 				B49AF3E7264AE658004F5BB6 /* CarImageCollectionViewCell.swift in Sources */,
 				B49AF3C0264ADC7E004F5BB6 /* SceneDelegate.swift in Sources */,
+				B4D6193D2654D89E009AD07F /* AsyncOperation.swift in Sources */,
+				B4D6193A2654D663009AD07F /* CarImageOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

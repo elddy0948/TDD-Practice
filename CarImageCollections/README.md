@@ -4,6 +4,51 @@
 
 
 
+- AsyncOperation의 구현 ready와 executing, finished상태에 대한 관리를 하려고 State라는 enum을 만들었습니다. 
+
+  ```swift
+      enum State: String {
+          case ready, executing, finished
+          fileprivate var keyPath: String {
+              return "is\(rawValue.capitalized)"
+          }
+      }
+  ```
+
+  Operation에서 기본적으로 제공하는 Read-only 프로퍼티들인 각각의 상태들에 따라서 State 상태를 체크해주었습니다. 
+
+  ```swift
+      override var isReady: Bool {
+          return super.isReady && state == .ready
+      }
+      override var isExecuting: Bool {
+          return state == .executing
+      }
+      override var isFinished: Bool {
+          return state == .finished
+      }
+      override var isAsynchronous: Bool {
+          return true
+      }
+  ```
+
+  또한 start() 메서드가 호출되면 취소된 상태이면 state를 finished로 바꿔주고 return, 그렇지 않으면 main()을 호출하고 state를 executing으로 바꿔주었습니다. 
+
+  ```swift
+      override func start() {
+          if isCancelled {
+              state = .finished
+              return
+          }
+          main()
+          state = .executing
+      }
+  ```
+
+  
+
+
+
 ## Tests
 
 ```swift
@@ -76,3 +121,10 @@ CarImageCollectionViewControllerTests
 
 ## 🧐 고민중!
 
+- 이미지의 다운로드가 첫번째 페이지에서만 동작하고 그 다음 페이지부터는 동작하지 않는 문제가 발생해서 그것에 대해서 알아보는 중입니다! 
+
+  ```swift
+  var cell = collectionView.cellForItem(at: indexPath) as? CarImageCollectionViewCell
+  ```
+
+  우선 발견한 문제점은 해당 코드를 실행해서 cell을 가져올 때 nil값을 반환한다는 문제점이 있었습니다. 

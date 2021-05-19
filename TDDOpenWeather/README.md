@@ -7,7 +7,7 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
 - [Tests](#tests-section)
 - [해결해 봤어요!](#solved-problems)
 - [고민한 점](#think-point)
- 
+
 
 
 ## <a name="used-skill">사용한 기술</a>
@@ -78,6 +78,8 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
   }
   ```
 
+  
+
 ## <a name="tests-section">Tests</a>
 
 ```swift
@@ -101,7 +103,7 @@ NetworkManagerTests
 	- testNetworkManager_fetchForecastByCityName_forecastArrayIsNotNil()
 ```
 ## <a name="solved-problems">✅ 해결해 봤어요!</a>
- 
+
 
 - Unit Test시 ViewController를 가져오는 방법?
   기존에 테스트 코드를 작성할 때 작성한 방법 
@@ -206,6 +208,10 @@ NetworkManagerTests
   이런식으로 코드를 작성하여 가지고왔습니다. 하지만 이렇게 코드를 동작시키면 **testController_whenViewDidLoad_navigationBarIsHidden** 해당 SearchCityViewController의 테스트가 제대로 작동하지 않았다. 아마 순서의 문제일 것 같다 테스트를 동시에 돌리지 않고 하나하나 작동하면 잘 돌아가는데 전체를 테스트하면 잘 동작하지 않았습니다. 
 
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였습니다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
+  
+- CoreData를 활용한 즐겨찾기 기능 구현?
+
+- CoreData의 Unit Test?
 
 
 

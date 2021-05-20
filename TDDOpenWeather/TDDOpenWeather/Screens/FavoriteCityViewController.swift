@@ -42,7 +42,8 @@ extension FavoriteCityViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCityCollectionViewCell.reuseIdentifier, for: indexPath) as? FavoriteCityCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .yellow
+        let city = favoriteCities[indexPath.item]
+        cell.configureBackgroundImage(city: city.name)
         return cell
     }
 }

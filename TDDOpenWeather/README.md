@@ -78,6 +78,53 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
   }
   ```
 
+- **CoreData**를 활용하여 즐겨찾기 기능을 구현하였습니다. 
+
+  CoreData에 저장되어있는 FavoriteCity 모델을 가져오는 메서드입니다.
+
+  ```swift
+  func loadSavedData() -> [FavoriteCity]? {
+  	var favoriteCity: [FavoriteCity] = []
+  	let request = FavoriteCity.createFetchRequest()
+  	do {
+  		favoriteCity = try container.viewContext.fetch(request)
+  		return favoriteCity
+  	} catch {
+  		return nil
+  	}
+  }
+  ```
+
+  City를 저장하는 메서드입니다. 
+
+  ```swift
+  func insertCity(city: String) {
+  	let entity = NSEntityDescription.entity(forEntityName: "FavoriteCity", in: self.container.viewContext)
+  	if let entity = entity {
+  		let managedObject = NSManagedObject(entity: entity, insertInto: self.container.viewContext)
+  		managedObject.setValue(city, forKey: "name")
+  		do {
+  			try self.container.viewContext.save()
+  		} catch {
+  			print(error)
+  		}
+  	}
+  }
+  ```
+
+  City를 삭제하는 메서드입니다.
+
+  ```swift
+  func delete(object: NSManagedObject) {
+  	self.container.viewContext.delete(object)
+    do {
+    	try self.container.viewContext.save()
+    } catch {
+    	print(error)
+  	}
+  }
+  ```
+
   
 
 ## <a name="tests-section">Tests</a>
@@ -209,8 +256,6 @@ NetworkManagerTests
 
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였습니다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
   
-- CoreData를 활용한 즐겨찾기 기능 구현?
-
 - CoreData의 Unit Test?
 
 
@@ -218,5 +263,9 @@ NetworkManagerTests
 
 ## App
 
-![Simulator Screen Recording - iPhone SE (2nd generation) - 2021-05-13 at 09 07 27](https://user-images.githubusercontent.com/40102795/118059120-b9fc0880-b3ca-11eb-9920-33bc66503ffd.gif)
+![Simulator Screen Recording - iPhone 12 - 2021-05-21 at 02 18 41](https://user-images.githubusercontent.com/40102795/119021873-e7ecd880-b9da-11eb-92db-64fe226c8a2a.gif)![Simulator Screen Shot - iPhone 12 - 2021-05-21 at 02 20 02](https://user-images.githubusercontent.com/40102795/119022255-62b5f380-b9db-11eb-84b4-53b170159219.png)
+
+
+
+
 

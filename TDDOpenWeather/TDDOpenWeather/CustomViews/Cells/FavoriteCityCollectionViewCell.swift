@@ -1,6 +1,7 @@
 import UIKit
 
 class FavoriteCityCollectionViewCell: UICollectionViewCell {
+    
     static let reuseIdentifier = String(describing: FavoriteCityCollectionViewCell.self)
     
     private let cityImageView: UIImageView = {

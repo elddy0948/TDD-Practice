@@ -1,19 +1,26 @@
 import UIKit
 
 class FavoriteCityViewController: UIViewController {
-    private var favoriteCities: [FavoriteCity] = []
-    private let coreDataManager = CoreDataManager.shared
+    
+    //MARK: - Views
     private let favoriteCityCollectionView = FavoriteCityCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
+    //MARK: - Properties
+    private var favoriteCities: [FavoriteCity] = []
+    private let coreDataManager = CoreDataManager.shared
+
+    //MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureFavoriteCities()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
     
+    //MARK: - Configure Views
     private func configure() {
         title = "Favorites"
         view.backgroundColor = .systemBackground
@@ -33,6 +40,7 @@ class FavoriteCityViewController: UIViewController {
     }
 }
 
+//MARK: - CollectionViewDataSource
 extension FavoriteCityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteCities.count
@@ -47,6 +55,8 @@ extension FavoriteCityViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+//MARK: - CollectionViewDelegate
 extension FavoriteCityViewController: UICollectionViewDelegate {
     
 }

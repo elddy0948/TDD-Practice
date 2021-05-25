@@ -1,17 +1,21 @@
 import UIKit
 
 class ForecastViewController: UIViewController {
-    var city: String?
-    var forecast: [Forecast] = []
-    var coreDataManager: CoreDataManager!
-    var favorites = [FavoriteCity]()
     
+    //MARK: - Views
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.reuseIdentifier)
         return tableView
     }()
     
+    //MARK: - Properties
+    var city: String?
+    var forecast: [Forecast] = []
+    var coreDataManager: CoreDataManager!
+    var favorites = [FavoriteCity]()
+    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCoreData()
@@ -28,6 +32,7 @@ class ForecastViewController: UIViewController {
         favorites = favoriteCity
     }
     
+    //MARK: - Configure Views
     private func configure() {
         title = city
         navigationController?.navigationBar.isHidden = false
@@ -48,14 +53,14 @@ class ForecastViewController: UIViewController {
         tableView.delegate = self
     }
     
+    //MARK: - Privates
     private func fetchCityForecast() {
-        let networkManager = NetworkManager.shared
-
         guard let city = city else {
             return
         }
         
-        networkManager.fetchForecastByCityName(city) { result in
+        NetworkManager.shared.fetchForecastByCityName(city) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let forecastList):
                 self.forecast = forecastList
@@ -63,11 +68,32 @@ class ForecastViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             case .failure(let error):
-                print(error)
+                self.presentAlertOnMainThread(title: "문제가 발생했어요!", message: error.rawValue, buttonTitle: "닫기")
             }
         }
     }
+}
+
+//MARK: - TableViewDelegate, DataSource
+extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forecast.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseIdentifier) as? ForecastTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configureData(with: forecast[indexPath.row])
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+}
+
+//MARK: - Favorites Function
+extension ForecastViewController {
     func findCityAndDelete() {
         let filteredFavorites = favorites.filter { $0.name == city }
         if !filteredFavorites.isEmpty {
@@ -84,22 +110,5 @@ class ForecastViewController: UIViewController {
             sender.image = UIImage(systemName: "star")!
             findCityAndDelete()
         }
-    }
-}
-
-extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forecast.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseIdentifier) as? ForecastTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.configureData(with: forecast[indexPath.row])
-        return cell
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
 }

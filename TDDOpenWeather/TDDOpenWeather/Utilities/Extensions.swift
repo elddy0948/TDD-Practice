@@ -1,6 +1,5 @@
 import UIKit
 
-
 extension Date {
     func getLocalDate() -> String {
         let dateFormatter = DateFormatter()

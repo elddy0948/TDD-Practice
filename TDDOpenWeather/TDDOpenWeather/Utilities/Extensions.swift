@@ -22,3 +22,15 @@ extension Double {
         return measurementFormatter.string(from: output)
     }
 }
+
+extension UIView {
+    func addSubviews(views: UIView...) {
+        for view in views { addSubview(view) }
+    }
+}
+
+extension UIStackView {
+    func addArrangedSubviews(views: UIView...) {
+        for view in views { addArrangedSubview(view) }
+    }
+}

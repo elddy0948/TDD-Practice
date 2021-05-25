@@ -9,6 +9,7 @@ final class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     
     private let baseURL = "https://api.openweathermap.org/data/2.5/forecast"
+    private let imageURL = "https://openweathermap.org/img/wn/"
     private let apiKey = Privacy.shared.getAPIKey()
     let cache = NSCache<NSString, UIImage>()
     
@@ -59,5 +60,39 @@ final class NetworkManager: NetworkManagerProtocol {
         }
         
         return url
+    }
+    
+    func fetchImage(with imagename: String, completion: @escaping (UIImage?) -> Void) {
+        let urlString = imageURL + "\(imagename)@2x.png"
+        let cacheKey = NSString(string: urlString)
+        
+        if let image =  cache.object(forKey: cacheKey) {
+            completion(image)
+            return
+        }
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self  else {
+                completion(nil)
+                return
+            }
+            
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  response.statusCode == 200,
+                  let data = data,
+                  let image = UIImage(data: data) else {
+                completion(nil)
+                return
+            }
+            
+            self.cache.setObject(image, forKey: cacheKey)
+            completion(image)
+        }
+        task.resume()
     }
 }

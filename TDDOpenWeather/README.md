@@ -7,6 +7,7 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
 - [Tests](#tests-section)
 - [해결해 봤어요!](#solved-problems)
 - [고민한 점](#think-point)
+- [Refactoring](#refactor-list)
 
 
 
@@ -317,6 +318,24 @@ NetworkManagerTests
   -> 우선은 test코드에 viewWillAppear를 호출해주고, SearchCityViewController에 navigationbar 를 설정해주는 부분을 viewWillAppear로 따로 빼주는 선택을 하였습니다. 더 좋은방법을 알아보기위해 검색이 더 필요한 부분!
   
 - CoreData의 Unit Test?
+
+
+
+## <a name="refactor-list">Refactoring</a>
+
+- 기존에 **WeatherIconImageView**에서 URLSession dataTask를 생성하는 코드를 작성하여 동작하는 방식으로 코드를 작성하였는데 이는 Networkmanager의 역할에 더 맞다고 생각하여 Networkmanager로 코드를 옮기고 WeatherIconImageView에는 다음의 코드만 남겨두었습니다.
+
+  ```swift
+  func fetchImage(imageName: String) {
+  	NetworkManager.shared.fetchImage(with: imageName) { image in
+  		DispatchQueue.main.async {
+  			self.image = image
+  		}
+  	}
+  }
+  ```
+
+  
 
 
 

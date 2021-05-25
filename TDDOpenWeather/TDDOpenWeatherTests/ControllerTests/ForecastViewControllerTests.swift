@@ -32,7 +32,7 @@ class ForecastViewControllerTests: XCTestCase {
     }
     
     func testController_whenAlreadyInFavorite_buttonIsStarFill() {
-        sut.favorites.append("Seoul")
+//        sut.favorites.append("Seoul")
         sut.viewDidLoad()
         rightBarButtonItem = sut.navigationItem.rightBarButtonItem
         XCTAssertEqual(rightBarButtonItem.image, UIImage(systemName: "star.fill"))

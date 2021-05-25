@@ -23,9 +23,12 @@ extension Double {
     }
 }
 
-extension UIView {
-    func addSubviews(views: UIView...) {
-        for view in views { addSubview(view) }
+extension UIViewController {
+    func presentAlertOnMainThread(title: String, message: String, buttonTitle: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

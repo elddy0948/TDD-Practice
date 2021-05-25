@@ -21,11 +21,15 @@ class SearchCityViewControllerTests: XCTestCase {
         XCTAssertTrue(unwrapGiven)
     }
     
-    func testController_whenSearchButtonTapped_isTextFieldStringCome() {
-        sut.cityTextField.text = "Seoul"
-        //when
-        sut.didTappedSearchButton(sut.searchButton)
-        //then
-        XCTAssertEqual(sut.city, sut.cityTextField.text)
+    func testController_whenSearchButtonTapped_checkCitynameIsEmpty() {
+        sut.searchButtonTapped(sut.searchCityView, with: nil)
+        let exp = expectation(description: "alert test")
+        let result = XCTWaiter.wait(for: [exp], timeout: 1.5)
+        if result == XCTWaiter.Result.timedOut {
+            let isAlertControllerVisible = sut.navigationController?.visibleViewController is UIAlertController
+            XCTAssertTrue(isAlertControllerVisible)
+        } else {
+            XCTFail()
+        }
     }
 }

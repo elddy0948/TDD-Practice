@@ -143,7 +143,7 @@ ForecastViewControllerTests
 
 SearchCityViewControllerTests
 	- testController_whenViewDidLoad_navigationBarIsHidden()
-	- testController_whenSearchButtonTapped_isTextFieldStringCome()
+	- testController_whenSearchButtonTapped_checkCitynameIsEmpty()
 
 NetworkManagerTests
 	- testNetworkManager_makeURL_urlIsNotNil()
@@ -151,6 +151,46 @@ NetworkManagerTests
 ```
 ## <a name="solved-problems">✅ 해결해 봤어요!</a>
 
+
+- SearchCityViewController와 SearchCityView를 분리(View와 Controller의 역할을 분리하고 싶었습니다.). 그렇다면 SearchCityViewController에 있던 searchButton를 눌러서 TextField에 입력된 입력값을 어떻게 전달해주는지?
+
+  -> **Delegation Pattern**을 활용하여 ViewController에게 알려주었습니다. 
+
+  ```swift
+  //SearchCityView.swift
+  protocol SearchCityViewDelegate: AnyObject {
+      func searchButtonTapped(_ searchCityView: SearchCityView, with cityname: String?)
+  }
+  
+  class SearchCityView: UIView {
+  	//Some Code...
+  	weak var delegate: SearchCityViewDelegate!
+  	//Some Code...
+  
+  	@objc private func searchButtonTapped(_ sender: UIButton) {
+  		delegate.searchButtonTapped(self, with: cityTextField.text)
+  	}
+  }
+  ```
+
+  ```swift
+  //SearchCityViewController.swift
+  searchCityView.delegate = self
+  
+  //MARK: - SearchCityViewDelegate
+  extension SearchCityViewController: SearchCityViewDelegate {
+      func searchButtonTapped(_ searchCityView: SearchCityView, with cityname: String?) {
+          guard let cityname = cityname,
+                !cityname.isEmpty else {
+              presentAlertOnMainThread(title: "문제가 발생했어요!", message: "도시 이름을 다시 확인해주세요!", buttonTitle: "OK")
+              return
+          }
+          pushForecastViewController(with: cityname)
+      }
+  }
+  ```
+
+  
 
 - Unit Test시 ViewController를 가져오는 방법?
   기존에 테스트 코드를 작성할 때 작성한 방법 
@@ -196,7 +236,27 @@ NetworkManagerTests
 
   위와같은 코드로 가져올 수 있었습니다.
 
-- 네트워크 Request를 할 때 "**api.openweathermap.org/data/2.5/forecast**" 로 요청을 날리면 'unsupportedURL' 이라는 에러메시지가 나옵니다.  "**https://api.openweathermap.org/data/2.5/forecast**" https://를 꼭 붙여줘야 합니다.
+  
+  
+- Search버튼을 눌렀는데 cityname이 비어있거나, nil이 들어오면 실패를 알리는 Alert를 띄우는 코드를 테스트하는 방법?(Alert Unit Test) 
+
+  expectation과 XCTWaiter를 활용하여 해결하였습니다. 
+
+  ```swift
+  func testController_whenSearchButtonTapped_checkCitynameIsEmpty() {
+  	sut.searchButtonTapped(sut.searchCityView, with: nil)
+  	let exp = expectation(description: "alert test")
+  	let result = XCTWaiter.wait(for: [exp], timeout: 1.5)
+  	if result == XCTWaiter.Result.timedOut {
+  		let isAlertControllerVisible = sut.navigationController?.visibleViewController is UIAlertController
+  		XCTAssertTrue(isAlertControllerVisible)
+  	} else {
+  		XCTFail()
+  	}
+  }
+  ```
+
+  
 
 -  Network Test를 진행할 때 Network상태에 따라 Test의 성공 여부가 갈리는 테스트는 좋지 않은 테스트입니다. 그렇기 때문에 MockNetworkmanager를 만들어 Test시 사용할 Class를 따로 만들어주었습니다.
 

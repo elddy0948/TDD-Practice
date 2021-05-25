@@ -1,6 +1,10 @@
 import UIKit
 
-class SearchCityView: UIView {
+protocol SearchCityViewDelegate: AnyObject {
+    func searchButtonTapped(_ searchCityView: SearchCityView, with cityname: String?)
+}
+
+final class SearchCityView: UIView {
     
     //MARK: - ViewComponents
     private let searchCityStackView = UIStackView()
@@ -8,6 +12,9 @@ class SearchCityView: UIView {
     private(set) var logoImageView = UIImageView()
     private(set) var cityTextField = OpenWeatherTextField()
     private(set) var searchButton = OpenWeatherButton(title: "Get current weather!", color: .systemOrange)
+    
+    //MARK: - Properties
+    weak var delegate: SearchCityViewDelegate!
     
     //MARK: - Initializer
     override init(frame: CGRect) {
@@ -67,7 +74,13 @@ class SearchCityView: UIView {
     }
     
     private func configureSearchButton() {
+        searchButton.addTarget(self, action: #selector(searchButtonTapped(_:)), for: .touchUpInside)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    //MARK: - Actions
+    @objc private func searchButtonTapped(_ sender: UIButton) {
+        delegate.searchButtonTapped(self, with: cityTextField.text)
     }
 }

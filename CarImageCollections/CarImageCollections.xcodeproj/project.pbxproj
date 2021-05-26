@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4647DC7265E296B00D03372 /* DownloadByTwoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4647DC6265E296B00D03372 /* DownloadByTwoCollectionViewController.swift */; };
+		B4647DCC265E2A2200D03372 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4647DCB265E2A2200D03372 /* NetworkManager.swift */; };
 		B49AF3BE264ADC7E004F5BB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3BD264ADC7E004F5BB6 /* AppDelegate.swift */; };
 		B49AF3C0264ADC7E004F5BB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AF3BF264ADC7E004F5BB6 /* SceneDelegate.swift */; };
 		B49AF3C5264ADC7E004F5BB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B49AF3C3264ADC7E004F5BB6 /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4647DC6265E296B00D03372 /* DownloadByTwoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadByTwoCollectionViewController.swift; sourceTree = "<group>"; };
+		B4647DCB265E2A2200D03372 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B49AF3BA264ADC7E004F5BB6 /* CarImageCollections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarImageCollections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B49AF3BD264ADC7E004F5BB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B49AF3BF264ADC7E004F5BB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B4647DC5265E294300D03372 /* DownloadImagesByTwo */ = {
+			isa = PBXGroup;
+			children = (
+				B4647DC6265E296B00D03372 /* DownloadByTwoCollectionViewController.swift */,
+			);
+			path = DownloadImagesByTwo;
+			sourceTree = "<group>";
+		};
+		B4647DC8265E2A0200D03372 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B4647DCB265E2A2200D03372 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		B49AF3B1264ADC7E004F5BB6 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +128,8 @@
 		B49AF3BC264ADC7E004F5BB6 /* CarImageCollections */ = {
 			isa = PBXGroup;
 			children = (
+				B4647DC8265E2A0200D03372 /* Networking */,
+				B4647DC5265E294300D03372 /* DownloadImagesByTwo */,
 				B44E3D4F26556635002A2A51 /* Views */,
 				B44E3D4E26556627002A2A51 /* GCD */,
 				B4D6193B2654D88E009AD07F /* Operations */,
@@ -244,12 +266,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4647DCC265E2A2200D03372 /* NetworkManager.swift in Sources */,
 				B49AF3D2264ADCDC004F5BB6 /* CarImageCollectionViewController.swift in Sources */,
 				B4D6193F2654DB61009AD07F /* OperationCarCollectionViewController.swift in Sources */,
 				B49AF3BE264ADC7E004F5BB6 /* AppDelegate.swift in Sources */,
 				B49AF3E7264AE658004F5BB6 /* CarImageCollectionViewCell.swift in Sources */,
 				B49AF3C0264ADC7E004F5BB6 /* SceneDelegate.swift in Sources */,
 				B4D6193D2654D89E009AD07F /* AsyncOperation.swift in Sources */,
+				B4647DC7265E296B00D03372 /* DownloadByTwoCollectionViewController.swift in Sources */,
 				B4D6193A2654D663009AD07F /* CarImageOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -86,6 +86,35 @@
   }
   ```
 
+- **DispatchSemaphore**를 활용하여 이미지를 2개씩 다운받을 수 있게 구현해보았습니다. 
+
+  ```swift
+  let semaphore = DispatchSemaphore(value: 2)
+  
+  func fetchImageByTwo(with url: URL, completion: @escaping (UIImage?) -> Void) {
+  	semaphore.wait() //Task를 시작하기 직전에 wait
+  	print("Semaphore IN!")
+  	let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+  		print("Done")
+  		guard let self = self else { return }
+  		defer { self.semaphore.signal() } //이 블록을 나갈때 무조건 signal()
+  		guard let data = data,
+  		let image = UIImage(data: data) else {
+  			completion(nil)
+  			return
+      }
+  	completion(image)
+  	}
+  	task.resume()
+  }
+  ```
+
+  ```swift
+  dispatchQueue.async {
+  	cell.downloadImage(url: url, type: .semaphore)
+  }
+  ```
+
   
 
 ## Tests
@@ -137,9 +166,9 @@ CarImageCollectionViewControllerTests
 
     🧐 QoS가 `.utility` ? -> 물론 이미지를 다운로드 하는 기능이고, 이는 사용자에게 직접적으로 보여지는 작업이므로 .userInteractive 나 .userInitiated 를 선택할 수도 있었지만, 즉각적으로 보여주지 않아도 괜찮고, 속도와 자원에서의 균형을 맞춰도 상관없는 작업이라 더 생각이 들어서 선택하게 되었습니다. 
 
-    해당 방법을 사용하니 스크롤시 버벅임은 줄었고, 부드러워졌지만, 다시돌아오면 이미지를 다시 로드해야하고, 다운로드 중에 화면에서 사라지면 다운로드를 취소하거나 하는 방법이 필요한 것으로 보인다! (Operation을 사용하면 가능할지도?!)
+    해당 방법을 사용하니 스크롤시 버벅임은 줄었고, 부드러워졌지만, 다시돌아오면 이미지를 다시 로드해야하고, 다운로드 중에 화면에서 사라지면 다운로드를 취소하거나 하는 방법이 필요한 것으로 보입니다! (Operation을 사용하면 가능할지도?!)
 
-  - URLSession 사용 Dispatch Queue를 활용한 위의 방법과 같지만 애플에서 만들어 준 라이브러리이므로 성능적인 면에서 한결 더 나아진다. 
+  - URLSession 사용 Dispatch Queue를 활용한 위의 방법과 같지만 애플에서 만들어 준 라이브러리이므로 성능적인 면에서 한결 더 나아졌습니다. 
 
     ```swift
     private func downloadWithURLSession(_ indexPath: IndexPath) {
@@ -206,7 +235,21 @@ CarImageCollectionViewControllerTests
     queue.addOperation(downloadOperation)
     ```
 
-    
+- 기존에 구현했던 코드로 cell을 정의할 때 느린 네트워크 상태에서 테스트를 해보니 이미지가 다운로드되기 전 까지 아무것도 할 수 없는 문제점이 발견되었습니다. 기존의 코드는 이런식으로 다운로드 해주고 있었는데, 
+
+  ```swift
+  cell.downloadImage(url: url, type: .normal)
+  ```
+
+  이를 DispatchQueue 내부에 넣어주었습니다.
+
+  ```swift
+  DispatchQueue.global().async {
+  	cell.downloadImage(url: url, type: .normal)
+  }
+  ```
+
+
 
 ## <a name="thinking-now">고민중!</a>
 
@@ -216,5 +259,6 @@ CarImageCollectionViewControllerTests
 
 ## App
 
-![Simulator Screen Recording - iPhone 12 - 2021-05-20 at 01 19 20](https://user-images.githubusercontent.com/40102795/118848145-72650780-b909-11eb-9261-cfce4bf215e4.gif)
+![Simulator Screen Recording - iPhone 12 - 2021-05-26 at 16 56 23](https://user-images.githubusercontent.com/40102795/119624050-bbeeae80-be43-11eb-8030-4a68225a77ce.gif)![Simulator Screen Recording - iPhone 12 - 2021-05-26 at 16 57 29](https://user-images.githubusercontent.com/40102795/119624059-bdb87200-be43-11eb-9161-ac34e9abc1ab.gif)![Simulator Screen Recording - iPhone 12 - 2021-05-26 at 16 58 11](https://user-images.githubusercontent.com/40102795/119624067-c01acc00-be43-11eb-8416-bc4a19814924.gif)
 
+제일 우측이 Semaphore를 이용한 다운로드입니다!

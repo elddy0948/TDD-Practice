@@ -1,8 +1,9 @@
 import UIKit
 
-class CarImageCollectionViewController: UICollectionViewController {
+class DownloadByTwoCollectionViewController: UICollectionViewController {
     private(set) var carImageUrls = [URL]()
     private let cellSpacing: CGFloat = 1
+    private let dispatchQueue = DispatchQueue(label: "downloadByTwoCollection", attributes: .concurrent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class CarImageCollectionViewController: UICollectionViewController {
     }
 }
 
-extension CarImageCollectionViewController {
+extension DownloadByTwoCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return carImageUrls.count
     }
@@ -51,14 +52,14 @@ extension CarImageCollectionViewController {
             return UICollectionViewCell()
         }
         let url = carImageUrls[indexPath.item]
-        DispatchQueue.global().async {
-            cell.downloadImage(url: url, type: .normal)
+        dispatchQueue.async {
+            cell.downloadImage(url: url, type: .semaphore)
         }
         return cell
     }
 }
 
-extension CarImageCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension DownloadByTwoCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var cellSize: CGFloat = 0
         let columns: CGFloat = 2

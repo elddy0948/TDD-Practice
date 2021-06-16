@@ -3,9 +3,10 @@ import UIKit
 extension Date {
     func getLocalDate() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
-        dateFormatter.dateStyle = .none
+//        dateFormatter.timeStyle = .short
+//        dateFormatter.dateStyle = .short
         dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = "yyyy/MM/dd \n HH:mm"
         let localDate = dateFormatter.string(from: self)
         return localDate
     }

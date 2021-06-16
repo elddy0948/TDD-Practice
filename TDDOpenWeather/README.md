@@ -335,7 +335,11 @@ NetworkManagerTests
   }
   ```
 
-  
+- DateFormatter가 Date를 표시해주는 방식을 기존에 시간만 나오는 방식에서 "yyyy/MM/dd \n HH:mm" 의 형태로 변경해주었습니다. 
+
+  ```swift
+  dateFormatter.dateFormat = "yyyy/MM/dd \n HH:mm"
+  ```
 
 
 

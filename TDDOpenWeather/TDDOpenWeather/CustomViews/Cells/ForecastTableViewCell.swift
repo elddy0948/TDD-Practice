@@ -21,6 +21,7 @@ class ForecastTableViewCell: UITableViewCell {
     
     private func configure() {
         contentView.addSubview(forecastView)
+        selectionStyle = .none
         NSLayoutConstraint.activate([
             forecastView.topAnchor.constraint(equalTo: contentView.topAnchor),
             forecastView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

@@ -12,6 +12,8 @@ class ForecastCellView: UIView {
     private let timeDataLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -26,9 +28,7 @@ class ForecastCellView: UIView {
     }()
     
     private let tempMaxLabel = TempLabel(font: UIFont.preferredFont(forTextStyle: .body))
-    
     private let tempMinLabel = TempLabel(font: UIFont.preferredFont(forTextStyle: .body))
-    
     private let tempLabel = TempLabel(font: UIFont.preferredFont(forTextStyle: .title1))
     
     override init(frame: CGRect) {
@@ -61,8 +61,8 @@ class ForecastCellView: UIView {
     
     func configureData(with forecast: Forecast) {
         timeDataLabel.text = Date(timeIntervalSince1970: forecast.dt).getLocalDate()
-        tempMaxLabel.text = forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius)
-        tempMinLabel.text = forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius)
+        tempMaxLabel.text = "🔥\(forecast.main.tempMax.convertTemperature(from: .kelvin, to: .celsius))"
+        tempMinLabel.text = "❄️\(forecast.main.tempMin.convertTemperature(from: .kelvin, to: .celsius))"
         tempLabel.text = forecast.main.temp.convertTemperature(from: .kelvin, to: .celsius)
         weatherIcon.fetchImage(imageName: forecast.weather[0].icon)
     }

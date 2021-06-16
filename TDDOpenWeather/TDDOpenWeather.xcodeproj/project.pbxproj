@@ -156,18 +156,18 @@
 		B4175F752630735A0073792E /* TDDOpenWeather */ = {
 			isa = PBXGroup;
 			children = (
-				B42AA51E264FFDAB0082F0A7 /* CoreDatas */,
-				B432E43926442CD7000971EA /* Utilities */,
-				B414650A26428930008DF266 /* Screens */,
-				B414650626428893008DF266 /* Networking */,
-				B4D2D1F92631EB2300CCE7FA /* Models */,
-				B4175F9D263076A40073792E /* CustomViews */,
 				B4175F762630735A0073792E /* AppDelegate.swift */,
-				B4175F782630735A0073792E /* SceneDelegate.swift */,
 				B4175F7F2630735B0073792E /* Assets.xcassets */,
-				B4175F812630735B0073792E /* LaunchScreen.storyboard */,
+				B42AA51E264FFDAB0082F0A7 /* CoreDatas */,
+				B4175F9D263076A40073792E /* CustomViews */,
 				B4175F842630735B0073792E /* Info.plist */,
+				B4175F812630735B0073792E /* LaunchScreen.storyboard */,
+				B4D2D1F92631EB2300CCE7FA /* Models */,
+				B414650626428893008DF266 /* Networking */,
 				B4D2D2002631EB7F00CCE7FA /* Privacy.swift */,
+				B4175F782630735A0073792E /* SceneDelegate.swift */,
+				B414650A26428930008DF266 /* Screens */,
+				B432E43926442CD7000971EA /* Utilities */,
 			);
 			path = TDDOpenWeather;
 			sourceTree = "<group>";

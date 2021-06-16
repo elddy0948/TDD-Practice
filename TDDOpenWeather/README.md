@@ -126,6 +126,21 @@ OpenWeatherMap.org 의 5 Day / 3 Hour Forecast API를 활용하여 지역을 검
   }
   ```
 
+- LaunchScreen.storyboard를 활용하여 2초간 LaunchScreen을 보여주게 하는 기능을 구현해 보았습니다.
+
+  우선 AppDelegate의 **didFinishLaunchingWithOptions** 에 sleep(2)를 주었습니다. 
+
+  ```swift
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  	do {
+  		sleep(2)
+  	}
+  	return true
+  }
+  ```
+
+  이후 LaunchScreen.storyboard를 원하는 이미지에 맞게 구현해주었습니다. 
+
   
 
 ## <a name="tests-section">Tests</a>
@@ -346,9 +361,9 @@ NetworkManagerTests
 
 ## App
 
-![Simulator Screen Recording - iPhone 12 - 2021-05-21 at 02 18 41](https://user-images.githubusercontent.com/40102795/119021873-e7ecd880-b9da-11eb-92db-64fe226c8a2a.gif)![Simulator Screen Shot - iPhone 12 - 2021-05-21 at 02 20 02](https://user-images.githubusercontent.com/40102795/119022255-62b5f380-b9db-11eb-84b4-53b170159219.png)
+![Simulator Screen Recording - iPhone 12 - 2021-06-16 at 15 24 13](https://user-images.githubusercontent.com/40102795/122168371-28932100-ceb7-11eb-8940-3c1001b55ece.gif)
 
-
+![Simulator Screen Shot - iPhone 12 - 2021-05-21 at 02 20 02](https://user-images.githubusercontent.com/40102795/119022255-62b5f380-b9db-11eb-84b4-53b170159219.png)
 
 
 
